@@ -14,21 +14,17 @@ export default async function generateQuestion({
   difficulty = 'medium'
 }: GenerateQuestionOptions) {
   if (process.env.NODE_ENV !== 'production') {
-    // 개발 환경에서는 /api/mocks로 POST 요청
-    try {
-      const res = await fetch('http://localhost:3000/api/mocks/generate-question', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question, difficulty })
-      });
-      const data = await res.json();
-      return data;
-    } catch (error) {
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Unknown error occurred'
-      };
-    }
+    return {
+      success: true,
+      data: {
+        id: '1',
+        question: 'React란?',
+        answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
+        topic: 'React',
+        difficulty: 'medium',
+        tags: ['react', 'frontend']
+      }
+    };
   }
 
   try {

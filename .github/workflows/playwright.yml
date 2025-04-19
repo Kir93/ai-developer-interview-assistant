@@ -46,7 +46,7 @@ jobs:
         run: pnpm dev &
 
       - name: Wait for server
-        run: pnpm dlx wait-on http://localhost:3000/api/mocks/generate-question
+        run: pnpm dlx wait-on http://localhost:3000
 
       - name: Run Playwright tests
         run: NODE_ENV=development pnpm exec playwright test --workers=3
