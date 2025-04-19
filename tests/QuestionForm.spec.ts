@@ -8,6 +8,8 @@ test.describe('QuestionForm E2E', () => {
     await input.fill('React란?');
     await expect(input).toHaveValue('React란?');
     await page.getByRole('button', { name: 'Generate Answer' }).click();
+    await expect(page.getByRole('status', { name: 'loading' })).toBeVisible();
+    await expect(page.getByRole('status', { name: 'loading' })).not.toBeVisible({ timeout: 10000 });
     await expect(page.getByText('Question:')).toBeVisible();
     await expect(page.getByText('React란?')).toBeVisible();
     await expect(page.getByText('React는 Facebook에서 개발한 UI 라이브러리입니다.')).toBeVisible();
