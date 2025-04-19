@@ -19,7 +19,7 @@ const difficultyList = [
 export function QuestionForm() {
   const [text, setText] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
-  const [result, setResult] = useState<QuestionData | null>(null);
+  const [results, setResults] = useState<QuestionData[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubscribe = async () => {
@@ -40,7 +40,7 @@ export function QuestionForm() {
 
     if (generatedResult.success) {
       setText('');
-      setResult(generatedResult.data || null);
+      setResults((prev) => [generatedResult.data, ...(prev || [])]);
     }
   };
 
@@ -88,8 +88,9 @@ export function QuestionForm() {
         </Button>
       </VStack>
       <Box mt={4}>
-        {result && (
+        {results?.map((result) => (
           <Box
+            key={result.question}
             mt={4}
             p={5}
             borderRadius="md"
@@ -171,7 +172,7 @@ export function QuestionForm() {
               </Box>
             </VStack>
           </Box>
-        )}
+        ))}
       </Box>
     </Box>
   );
