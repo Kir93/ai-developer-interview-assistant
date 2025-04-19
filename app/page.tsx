@@ -18,7 +18,7 @@ export default function Home() {
             question and answer for you.
           </Text>
         </Box>
-        <QuestionForm aria-label="Question Form" />
+        <QuestionForm />
       </VStack>
     </Container>
   );
