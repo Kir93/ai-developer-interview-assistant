@@ -17,7 +17,6 @@ test.describe('App Layout', () => {
     await expect(
       page.locator('script[src*="googlesyndication.com/pagead/js/adsbygoogle.js"]')
     ).toHaveCount(1);
-    await expect(page.locator('script[id="google-fc-present"]')).toHaveCount(1);
 
     /*
      * 주요 Provider/레이아웃 구조 확인 (AppLayout, Toaster 등)

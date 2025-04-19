@@ -78,6 +78,7 @@ export function QuestionForm() {
         </RadioGroup.Root>
         <Button
           loading={isLoading}
+          aria-disabled={isLoading}
           colorPalette="primary"
           size="lg"
           width="full"

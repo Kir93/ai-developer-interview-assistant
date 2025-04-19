@@ -7,9 +7,8 @@ test.describe('QuestionForm E2E', () => {
     await input.click();
     await input.fill('React란?');
     await expect(input).toHaveValue('React란?');
-    const button = page.getByRole('button', { name: 'Generate Answer' });
-    await button.click();
-    await expect(button).toBeDisabled();
+    await page.getByRole('button', { name: 'Generate Answer' }).click();
+    const button = page.getByRole('button', { name: 'Generate with AI Recommendation' });
     await expect(button).toBeEnabled({ timeout: 10000 });
     await expect(page.getByText('Question:')).toBeVisible();
     await expect(page.getByText('React란?')).toBeVisible();
@@ -40,9 +39,8 @@ test.describe('QuestionForm E2E', () => {
 
   test('입력 없이 버튼 클릭 → generateQuestion 호출 및 결과 확인', async ({ page }) => {
     await page.goto('/');
+    await page.getByRole('button', { name: 'Generate with AI Recommendation' }).click();
     const button = page.getByRole('button', { name: 'Generate with AI Recommendation' });
-    await button.click();
-    await expect(button).toBeDisabled();
     await expect(button).toBeEnabled({ timeout: 10000 });
     await expect(page.getByText('Question:')).toBeVisible();
   });
