@@ -36,19 +36,16 @@ jobs:
         if: steps.playwright-browsers-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install --with-deps
 
-      - name: Build Next.js
-        run: pnpm run build
-
       - name: Start server
-        run: pnpm start &
+        run: pnpm dev &
 
       - name: Wait for server
         run: pnpm dlx wait-on http://localhost:3000
 
       - name: Run Playwright tests
-        run: NODE_ENV=development pnpm exec playwright test
+        run: NODE_ENV=development pnpm exec playwright test --workers=3
 
-      - name: kill Wait for server
+      - name: Kill Wait for server
         run: pkill -f wait-on
 
       - uses: actions/upload-artifact@v4
