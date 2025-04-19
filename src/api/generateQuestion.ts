@@ -64,7 +64,7 @@ export default async function generateQuestion({
     const questions: QuestionData = result.questions || result;
 
     // Supabase에 질문 저장
-    const { error } = await supabase.from('questions').insert([questions]);
+    const { error } = await supabase.from('questions').insert(questions);
 
     if (error) {
       throw new Error(`Supabase 저장 중 오류 발생: ${error?.message}`);
