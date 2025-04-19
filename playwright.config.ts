@@ -17,7 +17,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   webServer: {
-    command: 'pnpm dev',
+    command: 'NODE_ENV=development pnpm dev',
     url: 'http://localhost:3000/',
     timeout: 120000,
     reuseExistingServer: true
