@@ -1,36 +1,25 @@
 # AI Developer Interview Assistant
 
-Get the latest development trends and interview tips delivered to your inbox.
+AI Developer Interview Assistant is an AI-powered question generator service for developer interview preparation.  
+Utilizing the latest tech stack such as OpenAI, Supabase, Next.js, and Chakra UI,  
+you can easily and quickly generate developer interview questions and answers tailored to your desired difficulty and topic.
 
-## Quick start
+---
 
-```zsh
-https://github.com/Kir93/ai-developer-interview-assistant.git use this template and make project
-git clone https://github.com/Kir93/{PROJECT_NAME}.git
-```
+## Features
 
-1. Install packages - pnpm install or npm install or yarn
-2. Changed Theme - ./styles/theme.ts
-3. Theme Typegen - npx @chakra-ui/cli typegen ./src/styles/theme.ts
-4. Running Project - pnpm dev or npm run dev or yarn dev
+- **AI-powered developer interview question generation**
+  - Generate customized questions/answers based on difficulty and topic using OpenAI API.
+- **Question/Answer storage and management**
+  - Securely save generated questions and answers with Supabase, and revisit them anytime.
+- **Real-time UX**
 
-## Repository short explanation
+  - Intuitive and responsive UI based on Chakra UI, fast data handling with React Query, and state management.
 
-NextJS app router simple template.
+---
 
-- FrameWork : next
-- Styling Tool: @chakra-ui/react
-- Global State Management : zustand
-- Server State Management : @tanstack/react-query
+## Tech Stack
 
-## Package Version
-
-Important library version history
-
-| Name                  | Version |
-| :-------------------- | :------ |
-| react                 | v19     |
-| next                  | latest  |
-| @chakra-ui/react      | v3.8.0  |
-| zustand               | v5.0.3  |
-| @tanstack/react-query | v5.66.0 |
+- **Frontend**: Next.js (App Router), React, TypeScript, Chakra UI, Zustand, React Query
+- **Backend/API**: OpenAI API, Supabase
+- **DevOps**: Vercel, ESLint, Prettier, Husky, Lint-staged
