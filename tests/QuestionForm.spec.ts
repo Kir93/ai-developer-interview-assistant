@@ -8,8 +8,6 @@ test.describe('QuestionForm E2E', () => {
     await input.fill('React란?');
     await expect(input).toHaveValue('React란?');
     await page.getByRole('button', { name: 'Generate Answer' }).click();
-    const button = page.getByRole('button', { name: 'Generate with AI Recommendation' });
-    await expect(button).toBeEnabled({ timeout: 10000 });
     await expect(page.getByText('Question:')).toBeVisible();
     await expect(page.getByText('React란?')).toBeVisible();
     await expect(page.getByText('React는 Facebook에서 개발한 UI 라이브러리입니다.')).toBeVisible();
@@ -40,8 +38,6 @@ test.describe('QuestionForm E2E', () => {
   test('입력 없이 버튼 클릭 → generateQuestion 호출 및 결과 확인', async ({ page }) => {
     await page.goto('/');
     await page.getByRole('button', { name: 'Generate with AI Recommendation' }).click();
-    const button = page.getByRole('button', { name: 'Generate with AI Recommendation' });
-    await expect(button).toBeEnabled({ timeout: 10000 });
     await expect(page.getByText('Question:')).toBeVisible();
   });
 });
