@@ -15,17 +15,12 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 10
+          run_install: false
 
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
           cache: 'pnpm'
-
-      - name: Enable Corepack and Install pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
-          npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -52,6 +47,9 @@ jobs:
 
       - name: Run Playwright tests
         run: NODE_ENV=development pnpm exec playwright test
+
+      - name: kill Wait for server
+        run: pkill -f wait-on
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
