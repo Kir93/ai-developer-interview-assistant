@@ -17,14 +17,14 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   webServer: {
-    command: 'pnpm start',
+    command: process.env.CI ? 'pnpm start' : 'pnpm dev',
     url: 'http://localhost:3000/',
-    timeout: 120000
+    timeout: 120000,
+    reuseExistingServer: !process.env.CI
   },
   use: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000',
-    trace: 'on-first-retry',
-    video: 'retry-with-video'
+    trace: 'on-first-retry'
   },
 
   /* Configure projects for major browsers */
