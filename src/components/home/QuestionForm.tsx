@@ -45,7 +45,7 @@ export function QuestionForm() {
   };
 
   return (
-    <Box p={6} borderRadius="lg" boxShadow="md" bg="white">
+    <Box p={6} borderRadius="lg" boxShadow="md" bg="white" aria-label="Question Form">
       <VStack spaceY={4}>
         <Input
           type="text"
