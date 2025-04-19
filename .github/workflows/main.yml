@@ -2,8 +2,8 @@
 name: Wake up periodically
 on:
   schedule:
-    - cron: "0 0 */5 * *"  # 매 5일마다 실행, 자정에 실행
-  workflow_dispatch:  # 수동 실행용
+    - cron: '0 0 */5 * *' # 매 5일마다 실행, 자정에 실행
+  workflow_dispatch: # 수동 실행용
 jobs:
   send_request:
     runs-on: ubuntu-latest
