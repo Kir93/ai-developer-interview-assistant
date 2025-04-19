@@ -13,6 +13,24 @@ export default async function generateQuestion({
   question,
   difficulty = 'medium'
 }: GenerateQuestionOptions) {
+  if (process.env.NODE_ENV === 'development') {
+    // 개발 환경에서는 /api/mocks로 POST 요청
+    try {
+      const res = await fetch('http://localhost:3000/api/mocks/generate-question', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question, difficulty })
+      });
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      return {
+        success: false,
+        error: error instanceof Error ? error.message : 'Unknown error occurred'
+      };
+    }
+  }
+
   try {
     // GPT에 보낼 프롬프트 구성
     const prompt = generateQuestionPrompt({
