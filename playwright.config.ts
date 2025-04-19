@@ -16,14 +16,8 @@ export default defineConfig({
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  webServer: {
-    command: 'NODE_ENV=development pnpm dev',
-    url: 'http://localhost:3000/',
-    timeout: 120000,
-    reuseExistingServer: true
-  },
   use: {
-    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    baseURL: 'http://localhost:3000',
     trace: 'on-first-retry'
   },
 

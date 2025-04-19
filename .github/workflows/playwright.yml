@@ -13,7 +13,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+      - name: Cache pnpm
+        uses: actions/cache@v4
+        id: pnpm-cache
+        with:
+          path: ~/.cache/pnpm
+          key: pnpm-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
       - name: Install dependencies
+        if: steps.pnpm-cache.outputs.cache-hit != 'true'
         run: npm install -g pnpm && pnpm install --frozen-lockfile
       - name: Cache Playwright Browsers
         uses: actions/cache@v4
@@ -24,6 +31,10 @@ jobs:
       - name: Install Playwright Browsers
         if: steps.playwright-browsers-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install --with-deps
+      - name: run dev
+        run: pnpm run dev &
+      - name: Wait for dev server
+        run: pnpm dlx wait-on http://localhost:3000
       - name: Run Playwright tests
         run: NODE_ENV=development pnpm exec playwright test
       - uses: actions/upload-artifact@v4
