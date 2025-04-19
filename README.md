@@ -1,5 +1,7 @@
 # AI Developer Interview Assistant
 
+Get the latest development trends and interview tips delivered to your inbox.
+
 ## Quick start
 
 ```zsh
