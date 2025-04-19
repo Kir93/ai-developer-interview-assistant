@@ -15,10 +15,6 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm install -g pnpm && pnpm install --frozen-lockfile
-      - name: Build Next.js app
-        run: pnpm build
-      - name: Install Playwright Browsers
-        run: pnpm exec playwright install --with-deps
       - name: Run Playwright tests
         run: NODE_ENV=development pnpm exec playwright test
       - uses: actions/upload-artifact@v4
