@@ -88,9 +88,9 @@ export function QuestionForm() {
         </Button>
       </VStack>
       <Box mt={4}>
-        {results?.map((result) => (
+        {results?.map((result, index) => (
           <Box
-            key={result.question}
+            key={result.question + index}
             mt={4}
             p={5}
             borderRadius="md"

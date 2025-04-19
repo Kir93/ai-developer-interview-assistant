@@ -7,9 +7,10 @@ test.describe('QuestionForm E2E', () => {
     await input.click();
     await input.fill('React란?');
     await expect(input).toHaveValue('React란?');
-    await page.getByRole('button', { name: 'Generate Answer' }).click();
-    await expect(page.getByRole('status', { name: 'loading' })).toBeVisible();
-    await expect(page.getByRole('status', { name: 'loading' })).not.toBeVisible({ timeout: 10000 });
+    const button = page.getByRole('button', { name: 'Generate Answer' });
+    await button.click();
+    await expect(button).toBeDisabled();
+    await expect(button).toBeEnabled({ timeout: 10000 });
     await expect(page.getByText('Question:')).toBeVisible();
     await expect(page.getByText('React란?')).toBeVisible();
     await expect(page.getByText('React는 Facebook에서 개발한 UI 라이브러리입니다.')).toBeVisible();
@@ -39,7 +40,10 @@ test.describe('QuestionForm E2E', () => {
 
   test('입력 없이 버튼 클릭 → generateQuestion 호출 및 결과 확인', async ({ page }) => {
     await page.goto('/');
-    await page.click('button:has-text("Generate with AI Recommendation")');
+    const button = page.getByRole('button', { name: 'Generate with AI Recommendation' });
+    await button.click();
+    await expect(button).toBeDisabled();
+    await expect(button).toBeEnabled({ timeout: 10000 });
     await expect(page.getByText('Question:')).toBeVisible();
   });
 });
