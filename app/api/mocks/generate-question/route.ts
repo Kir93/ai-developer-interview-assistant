@@ -1,6 +1,10 @@
-// /app/api/mocks/mock.ts
+// /api/mocks/generate-question
 
 import { NextResponse } from 'next/server';
+
+export const GET = async () => {
+  return NextResponse.json('Hello, world!');
+};
 
 // POST 요청 핸들러 추가
 export const POST = async () => {

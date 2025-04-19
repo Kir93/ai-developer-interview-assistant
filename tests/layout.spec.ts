@@ -5,7 +5,6 @@ import { test, expect } from '@playwright/test';
 test.describe('App Layout', () => {
   test('레이아웃의 주요 구조와 메타데이터가 정상적으로 렌더링된다', async ({ page }) => {
     await page.goto('/');
-    console.log('ENV:', process.env.NODE_ENV);
     // 메타데이터 확인
     await expect(page).toHaveTitle(/AI Developer Interview Assistant/);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute(
