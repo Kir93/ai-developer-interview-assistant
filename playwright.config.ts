@@ -18,7 +18,12 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL: 'http://localhost:3000',
-    trace: 'on-first-retry'
+    headless: true,
+    viewport: { width: 1280, height: 720 },
+    ignoreHTTPSErrors: true,
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure'
   },
 
   /* Configure projects for major browsers */
