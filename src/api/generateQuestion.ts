@@ -13,7 +13,7 @@ export default async function generateQuestion({
   question,
   difficulty = 'medium'
 }: GenerateQuestionOptions) {
-  if (process.env.NODE_ENV === 'development') {
+  if (process.env.NODE_ENV !== 'production') {
     // 개발 환경에서는 /api/mocks로 POST 요청
     try {
       const res = await fetch('http://localhost:3000/api/mocks/generate-question', {
