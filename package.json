@@ -13,7 +13,8 @@
     "depcheck": "npx depcheck",
     "svgo": "npx svgo -f public/svgs",
     "prepare": "husky install",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "test:e2e": "playwright test"
   },
   "browserslist": [
     "> 2% in KR ",
@@ -37,6 +38,7 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@playwright/test": "^1.52.0",
     "@tanstack/react-query-devtools": "^5.66.0",
     "@types/node": "22.14.1",
     "@types/react": "^19.0.8",
