@@ -51,9 +51,6 @@ jobs:
       - name: Run Playwright tests
         run: NODE_ENV=development pnpm exec playwright test --workers=3
 
-      - name: Kill Wait for server
-        run: pkill -f wait-on
-
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
