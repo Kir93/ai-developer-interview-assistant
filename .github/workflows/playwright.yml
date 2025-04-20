@@ -25,21 +25,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Get Playwright version
-        id: playwright-version
-        run: |
-          PLAYWRIGHT_VERSION=$(grep '@playwright/test' pnpm-lock.yaml | awk '{print $2}' | head -n 1)
-          echo "PLAYWRIGHT_VERSION=${PLAYWRIGHT_VERSION}" >> $GITHUB_ENV
-
-      - name: Cache Playwright Browsers
-        uses: actions/cache@v4
-        id: playwright-browsers-cache
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright-${{ env.PLAYWRIGHT_VERSION }}
-
       - name: Install Playwright Browsers
-        if: steps.playwright-browsers-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install --with-deps
 
       - name: Start server
