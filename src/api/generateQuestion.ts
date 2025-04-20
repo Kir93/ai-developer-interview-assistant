@@ -13,20 +13,6 @@ export default async function generateQuestion({
   question,
   difficulty = 'medium'
 }: GenerateQuestionOptions) {
-  if (process.env.NODE_ENV !== 'production') {
-    return {
-      success: true,
-      data: {
-        id: '1',
-        question: 'React란?',
-        answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
-        topic: 'React',
-        difficulty: 'medium',
-        tags: ['react', 'frontend']
-      }
-    };
-  }
-
   try {
     // GPT에 보낼 프롬프트 구성
     const prompt = generateQuestionPrompt({

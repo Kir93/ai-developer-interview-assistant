@@ -24,10 +24,22 @@ export function QuestionForm() {
 
   const handleSubscribe = async () => {
     setIsLoading(true);
-    const generatedResult = await generateQuestion({
-      question: text,
-      difficulty
-    });
+    let generatedResult: { success: boolean; error?: string; data?: QuestionData } = {
+      success: true,
+      data: {
+        question: 'React란?',
+        answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
+        topic: 'React',
+        difficulty: 'medium',
+        tags: ['react', 'frontend']
+      }
+    };
+    if (process.env.NODE_ENV !== 'development') {
+      generatedResult = await generateQuestion({
+        question: text,
+        difficulty
+      });
+    }
 
     setIsLoading(false);
 
@@ -40,7 +52,7 @@ export function QuestionForm() {
 
     if (generatedResult.success) {
       setText('');
-      setResults((prev) => [generatedResult.data, ...(prev || [])]);
+      setResults((prev) => [generatedResult?.data as QuestionData, ...(prev || [])]);
     }
   };
 
