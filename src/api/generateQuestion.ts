@@ -23,7 +23,7 @@ export default async function generateQuestion({
     // OpenAI API 호출
     const completion = await openai.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
-      model: 'gpt-4o-mini-search-preview'
+      model: 'gpt-4.1-nano'
     });
 
     // API 응답 추출

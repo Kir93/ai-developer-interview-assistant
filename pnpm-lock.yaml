@@ -36,8 +36,8 @@ importers:
         specifier: ^4.2.3
         version: 4.2.3(next@15.3.0(@playwright/test@1.52.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
       openai:
-        specifier: ^4.93.0
-        version: 4.93.0(ws@8.18.1)
+        specifier: ^4.95.1
+        version: 4.95.1(ws@8.18.1)
       react:
         specifier: ^19
         version: 19.1.0
@@ -1940,8 +1940,8 @@ packages:
     resolution: {integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==}
     engines: {node: '>=18'}
 
-  openai@4.93.0:
-    resolution: {integrity: sha512-2kONcISbThKLfm7T9paVzg+QCE1FOZtNMMUfXyXckUAoXRRS/mTP89JSDHPMp8uM5s0bz28RISbvQjArD6mgUQ==}
+  openai@4.95.1:
+    resolution: {integrity: sha512-IqJy+ymeW+k/Wq+2YVN3693OQMMcODRtHEYOlz263MdUwnN/Dwdl9c2EXSxLLtGEHkSHAfvzpDMHI5MaWJKXjQ==}
     hasBin: true
     peerDependencies:
       ws: ^8.18.0
@@ -4821,7 +4821,7 @@ snapshots:
     dependencies:
       mimic-function: 5.0.1
 
-  openai@4.93.0(ws@8.18.1):
+  openai@4.95.1(ws@8.18.1):
     dependencies:
       '@types/node': 18.19.86
       '@types/node-fetch': 2.6.12
