@@ -10,5 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Send request
+        if: github.event_name != 'pull_request'
         run: |
           curl --request GET --url "${{ secrets.MY_API_ENDPOINT }}"
