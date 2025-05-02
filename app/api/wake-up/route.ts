@@ -1,12 +1,13 @@
+import { NextResponse } from 'next/server';
+
 import supabase from '@configs/supabase';
 
 export async function GET() {
-  const { data, status } = await supabase.from('questions').select('id').limit(1);
-
+  const { data, status } = await supabase.from('questions').select('created_at').limit(1);
   if (status === 200) {
-    return new Response(JSON.stringify(data));
+    return NextResponse.json({ success: true, message: 'Wake up successful', data });
   } else {
-    return new Response(JSON.stringify({ success: false, error: 'Failed to fetch data' }), {
+    return new Response(JSON.stringify({ success: false, error: 'Wake up failed' }), {
       status
     });
   }
