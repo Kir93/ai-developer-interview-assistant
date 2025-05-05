@@ -1,7 +1,5 @@
 'use client';
 
-import { ChangeEvent } from 'react';
-
 import {
   Box,
   createListCollection,
