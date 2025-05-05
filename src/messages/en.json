@@ -2,6 +2,16 @@
   "home": {
     "title": "AI Developer Interview Assistant",
     "subTitle": "Get the latest development trends and interview tips with AI.",
-    "description": "Have a question about tech interviews? Enter your topic and let AI generate a practice question and answer for you."
+    "description": "Have a question about tech interviews? Enter your topic and let AI generate a practice question and answer for you.",
+    "inputPlaceholder": "Enter a topic, e.g., 'JavaScript', 'React', 'Python', etc.",
+    "difficulty": {
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard"
+    },
+    "generateButtonText": {
+      "recommend": "Generate with AI Recommendation",
+      "text": "Generate Answer"
+    }
   }
 }

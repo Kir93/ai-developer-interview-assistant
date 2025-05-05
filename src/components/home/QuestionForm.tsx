@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { Box, Button, HStack, Input, RadioGroup, Text, VStack } from '@chakra-ui/react';
-import { useLocale } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { Difficulty, QuestionData } from '@type/generateQuestion.types';
 
@@ -11,14 +11,15 @@ import generateQuestion from '@api/generateQuestion';
 
 import { toaster } from '@components/ui/toaster';
 
-const difficultyList = [
-  { label: 'hard', value: 'hard' },
-  { label: 'medium', value: 'medium' },
-  { label: 'easy', value: 'easy' }
-];
-
 export function QuestionForm() {
   const locale = useLocale();
+  const t = useTranslations('home');
+
+  const difficultyList = [
+    { label: t('difficulty.hard'), value: 'hard' },
+    { label: t('difficulty.medium'), value: 'medium' },
+    { label: t('difficulty.easy'), value: 'easy' }
+  ];
 
   const [text, setText] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
@@ -66,7 +67,7 @@ export function QuestionForm() {
         <Input
           type="text"
           name="text"
-          placeholder="input your question developer interview"
+          placeholder={t('inputPlaceholder')}
           size="lg"
           borderColor="gray.300"
           _hover={{ borderColor: 'blue.500' }}
@@ -98,10 +99,10 @@ export function QuestionForm() {
           colorPalette="primary"
           size="lg"
           width="full"
-          aria-label={text ? 'Generate Answer' : 'Generate with AI Recommendation'}
+          aria-label={text ? t('generateButtonText.text') : t('generateButtonText.recommend')}
           onClick={handleSubscribe}
         >
-          {text ? 'Generate Answer' : 'Generate with AI Recommendation'}
+          {text ? t('generateButtonText.text') : t('generateButtonText.recommend')}
         </Button>
       </VStack>
       <Box mt={4}>
