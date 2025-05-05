@@ -11,13 +11,15 @@ import { GenerateQuestionOptions, QuestionData } from '@type/generateQuestion.ty
  */
 export default async function generateQuestion({
   question,
-  difficulty = 'medium'
+  difficulty = 'medium',
+  locale
 }: GenerateQuestionOptions) {
   try {
     // GPT에 보낼 프롬프트 구성
     const prompt = generateQuestionPrompt({
       question,
-      difficulty
+      difficulty,
+      locale
     });
 
     // OpenAI API 호출

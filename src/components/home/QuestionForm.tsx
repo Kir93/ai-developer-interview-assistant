@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { Box, Button, HStack, Input, RadioGroup, Text, VStack } from '@chakra-ui/react';
+import { useLocale } from 'next-intl';
 
 import { Difficulty, QuestionData } from '@type/generateQuestion.types';
 
@@ -17,6 +18,8 @@ const difficultyList = [
 ];
 
 export function QuestionForm() {
+  const locale = useLocale();
+
   const [text, setText] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
   const [results, setResults] = useState<QuestionData[] | null>(null);
@@ -37,7 +40,8 @@ export function QuestionForm() {
     if (process.env.NODE_ENV !== 'development') {
       generatedResult = await generateQuestion({
         question: text,
-        difficulty
+        difficulty,
+        locale
       });
     }
 

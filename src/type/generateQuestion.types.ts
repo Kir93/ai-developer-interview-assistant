@@ -5,6 +5,7 @@ export type Difficulty = 'easy' | 'medium' | 'hard';
 export type GenerateQuestionOptions = {
   question?: string;
   difficulty?: Difficulty;
+  locale?: string;
 };
 
 /** 생성된 질문 타입 정의 */
