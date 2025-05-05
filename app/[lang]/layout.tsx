@@ -55,12 +55,13 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://interview.kir93.co.kr')
 };
 
-interface RootLayoutProps {
+type RootLayoutProps = {
   children: ReactNode;
-  params: { lang: string };
-}
+  params: Promise<{ lang: string }>;
+};
 
-export default async function RootLayout({ children, params: { lang } }: RootLayoutProps) {
+export default async function RootLayout({ children, params }: RootLayoutProps) {
+  const { lang } = await params;
   let messages;
   try {
     messages = await getMessages({ locale: lang });
