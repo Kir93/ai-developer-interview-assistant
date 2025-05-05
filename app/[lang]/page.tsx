@@ -1,21 +1,22 @@
 import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
+import { useTranslations } from 'next-intl';
 
 import { QuestionForm } from '@components/home/QuestionForm';
 
 export default function Home() {
+  const t = useTranslations('home');
   return (
     <Container maxW="container.md" py={10}>
       <VStack spaceY={6} align="stretch">
         <Box textAlign="center">
           <Heading as="h1" size="xl" mb={2}>
-            AI Developer Interview Assistant
+            {t('title')}
           </Heading>
           <Text color="gray.600" mb={4}>
-            Get the latest development trends and interview tips delivered to your inbox.
+            {t('subTitle')}
           </Text>
           <Text mt={2} fontSize="sm" color="gray.500" textAlign="center">
-            Have a question about tech interviews? Enter your topic and let AI generate a practice
-            question and answer for you.
+            {t('description')}
           </Text>
         </Box>
         <QuestionForm />

@@ -1,7 +1,10 @@
 import { ReactNode } from 'react';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { notFound } from 'next/navigation';
 import Script from 'next/script';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
 
 import { notoSans } from '@configs/bigContents';
 
@@ -52,13 +55,21 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://interview.kir93.co.kr')
 };
 
-export default function RootLayout({
-  children
+export default async function RootLayout({
+  children,
+  params: { locale }
 }: Readonly<{
   children: ReactNode;
+  params: { locale: string };
 }>) {
+  let messages;
+  try {
+    messages = await getMessages({ locale });
+  } catch (error) {
+    notFound();
+  }
   return (
-    <html className={notoSans.className} suppressHydrationWarning>
+    <html lang={locale} className={notoSans.className} suppressHydrationWarning>
       <head>
         <Script
           async
@@ -69,12 +80,14 @@ export default function RootLayout({
       <body>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID!} />
-        <ReactQueryProvider>
-          <ChakraUIProvider>
-            <AppLayout>{children}</AppLayout>
-            <Toaster />
-          </ChakraUIProvider>
-        </ReactQueryProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <ReactQueryProvider>
+            <ChakraUIProvider>
+              <AppLayout>{children}</AppLayout>
+              <Toaster />
+            </ChakraUIProvider>
+          </ReactQueryProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
