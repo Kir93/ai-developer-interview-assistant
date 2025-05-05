@@ -55,21 +55,20 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://interview.kir93.co.kr')
 };
 
-export default async function RootLayout({
-  children,
-  params: { locale }
-}: Readonly<{
+interface RootLayoutProps {
   children: ReactNode;
-  params: { locale: string };
-}>) {
+  params: { lang: string };
+}
+
+export default async function RootLayout({ children, params: { lang } }: RootLayoutProps) {
   let messages;
   try {
-    messages = await getMessages({ locale });
+    messages = await getMessages({ locale: lang });
   } catch (error) {
     notFound();
   }
   return (
-    <html lang={locale} className={notoSans.className} suppressHydrationWarning>
+    <html lang={lang} className={notoSans.className} suppressHydrationWarning>
       <head>
         <Script
           async
@@ -80,7 +79,7 @@ export default async function RootLayout({
       <body>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID!} />
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={lang} messages={messages}>
           <ReactQueryProvider>
             <ChakraUIProvider>
               <AppLayout>{children}</AppLayout>
