@@ -34,7 +34,7 @@ export function QuestionForm() {
         question: 'React란?',
         answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
         topic: 'React',
-        difficulty: 'medium',
+        difficulty,
         tags: ['react', 'frontend']
       }
     };
@@ -75,6 +75,7 @@ export function QuestionForm() {
           aria-label="text"
           value={text}
           onChange={(e) => setText(e.target.value)}
+          data-testid="question-input"
         />
 
         <RadioGroup.Root
@@ -82,10 +83,15 @@ export function QuestionForm() {
           defaultValue="medium"
           value={difficulty}
           onValueChange={(e) => setDifficulty(e.value as Difficulty)}
+          data-testid="difficulty-radio-group"
         >
           <HStack gap={4}>
             {difficultyList.map((item) => (
-              <RadioGroup.Item key={item.value} value={item.value}>
+              <RadioGroup.Item
+                key={item.value}
+                value={item.value}
+                data-testid={`difficulty-${item.value}`}
+              >
                 <RadioGroup.ItemHiddenInput />
                 <RadioGroup.ItemIndicator />
                 <RadioGroup.ItemText>{item.label}</RadioGroup.ItemText>
@@ -101,6 +107,7 @@ export function QuestionForm() {
           width="full"
           aria-label={text ? t('generateButtonText.text') : t('generateButtonText.recommend')}
           onClick={handleSubscribe}
+          data-testid="generate-button"
         >
           {text ? t('generateButtonText.text') : t('generateButtonText.recommend')}
         </Button>
@@ -116,17 +123,25 @@ export function QuestionForm() {
             borderWidth="1px"
             borderColor="blue.200"
             shadow="sm"
+            data-testid={`result-${index}`}
           >
             <VStack align="stretch" gap={4}>
               <Box>
                 <HStack mb={2}>
-                  <Text fontWeight="bold" color="blue.700" fontSize="lg">
+                  <Text
+                    fontWeight="bold"
+                    color="blue.700"
+                    fontSize="lg"
+                    data-testid="question-label"
+                  >
                     Question:
                   </Text>
-                  <Text fontWeight="medium">{result.question}</Text>
+                  <Text fontWeight="medium" data-testid="question-content">
+                    {result.question}
+                  </Text>
                 </HStack>
                 <Box bg="white" p={4} borderRadius="md" borderWidth="1px" borderColor="blue.100">
-                  <Text whiteSpace="pre-wrap" color="gray.700">
+                  <Text whiteSpace="pre-wrap" color="gray.700" data-testid="answer-content">
                     {result.answer}
                   </Text>
                 </Box>
@@ -134,13 +149,13 @@ export function QuestionForm() {
 
               <HStack justify="space-between" wrap="wrap">
                 <HStack>
-                  <Text fontWeight="bold" color="blue.700">
+                  <Text fontWeight="bold" color="blue.700" data-testid="topic-label">
                     Topic:
                   </Text>
-                  <Text>{result.topic}</Text>
+                  <Text data-testid="topic-content">{result.topic}</Text>
                 </HStack>
                 <HStack>
-                  <Text fontWeight="bold" color="blue.700">
+                  <Text fontWeight="bold" color="blue.700" data-testid="difficulty-label">
                     Difficulty:
                   </Text>
                   <Box
@@ -162,6 +177,7 @@ export function QuestionForm() {
                           : 'red.700'
                     }
                     fontSize="sm"
+                    data-testid="difficulty-content"
                   >
                     {result.difficulty}
                   </Box>
@@ -169,7 +185,7 @@ export function QuestionForm() {
               </HStack>
 
               <Box>
-                <Text fontWeight="bold" color="blue.700" mb={2}>
+                <Text fontWeight="bold" color="blue.700" mb={2} data-testid="tags-label">
                   Tags:
                 </Text>
                 <HStack gap={2} wrap="wrap">
@@ -182,6 +198,7 @@ export function QuestionForm() {
                       bg="gray.100"
                       color="gray.700"
                       fontSize="sm"
+                      data-testid={`tag-${tag}`}
                     >
                       {tag}
                     </Box>
