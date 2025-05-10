@@ -40,15 +40,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'AI Developer Interview Assistant',
     description: 'Get the latest development trends and interview tips delivered to your inbox.',
+    images: 'https://interview.kir93.co.kr/thumbnail.png',
     url: 'https://interview.kir93.co.kr',
     siteName: 'AI Developer Interview Assistant',
-    locale: 'en_US',
     type: 'website'
   },
   twitter: {
     card: 'summary_large_image',
     title: 'AI Developer Interview Assistant',
     description: 'Get the latest development trends and interview tips delivered to your inbox.',
+    images: 'https://interview.kir93.co.kr/thumbnail.png',
     creator: '@kir93',
     site: 'https://interview.kir93.co.kr'
   },
