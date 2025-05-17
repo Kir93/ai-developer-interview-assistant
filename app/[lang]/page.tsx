@@ -12,10 +12,10 @@ export default function Home() {
           <Heading as="h1" size="xl" mb={2}>
             {t('title')}
           </Heading>
-          <Text color="gray.600" mb={4}>
+          <Text color="gray.900" mb={4}>
             {t('subTitle')}
           </Text>
-          <Text mt={2} fontSize="sm" color="gray.500" textAlign="center">
+          <Text mt={2} fontSize="sm" color="gray.800" textAlign="center">
             {t('description')}
           </Text>
         </Box>
