@@ -1,10 +1,13 @@
 'use server';
 
+import { DAILY_API_REQUEST_LIMIT } from '@configs/bigContents';
 import openai from '@configs/openai';
 import { generateQuestionPrompt } from '@configs/prompt';
 import supabase from '@configs/supabase';
 
 import { GenerateQuestionOptions, QuestionData } from '@type/generateQuestion.types';
+
+import { getClientIP, getIPDailyApiUsage, incrementIPApiUsage } from './checkDailyRequest';
 
 /**
  * GPT로부터 개발자 인터뷰 질문을 생성하는 서버 액션
@@ -15,6 +18,19 @@ export default async function generateQuestion({
   locale
 }: GenerateQuestionOptions) {
   try {
+    // 클라이언트 IP 주소 가져오기
+    const ipAddress = await getClientIP();
+
+    // IP 주소 기반 당일 API 요청 횟수 확인
+    const currentUsage = await getIPDailyApiUsage(ipAddress);
+
+    if (currentUsage >= DAILY_API_REQUEST_LIMIT) {
+      return {
+        success: false,
+        error: `오늘의 API 요청 한도(${DAILY_API_REQUEST_LIMIT}회)를 초과했습니다. 내일 다시 시도해주세요.`
+      };
+    }
+
     // GPT에 보낼 프롬프트 구성
     const prompt = generateQuestionPrompt({
       question,
@@ -54,9 +70,19 @@ export default async function generateQuestion({
       throw new Error(`Supabase 저장 중 오류 발생: ${error?.message}`);
     }
 
+    // API 사용량 증가
+    const { limitCount } = await incrementIPApiUsage(ipAddress);
+
     return {
       success: true,
-      data: questions
+      data: {
+        question: 'React란?',
+        answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
+        topic: 'React',
+        difficulty,
+        tags: ['react', 'frontend']
+      },
+      limitCount: limitCount
     };
   } catch (error) {
     console.error('Error generating questions:', error);

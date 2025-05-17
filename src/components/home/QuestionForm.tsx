@@ -24,12 +24,19 @@ export function QuestionForm() {
   const [text, setText] = useState('');
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
   const [results, setResults] = useState<QuestionData[] | null>(null);
+  const [limitCount, setLimitCount] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubscribe = async () => {
     setIsLoading(true);
-    let generatedResult: { success: boolean; error?: string; data?: QuestionData } = {
+    let generatedResult: {
+      success: boolean;
+      limitCount?: number;
+      error?: string;
+      data?: QuestionData;
+    } = {
       success: true,
+      limitCount: 3,
       data: {
         question: 'React란?',
         answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
@@ -38,7 +45,7 @@ export function QuestionForm() {
         tags: ['react', 'frontend']
       }
     };
-    if (process.env.NODE_ENV !== 'development') {
+    if (process.env.NODE_ENV === 'development') {
       generatedResult = await generateQuestion({
         question: text,
         difficulty,
@@ -58,12 +65,13 @@ export function QuestionForm() {
     if (generatedResult.success) {
       setText('');
       setResults((prev) => [generatedResult?.data as QuestionData, ...(prev || [])]);
+      setLimitCount(generatedResult.limitCount || null);
     }
   };
 
   return (
     <Box p={6} borderRadius="lg" boxShadow="md" bg="white" aria-label="Question Form">
-      <VStack spaceY={4}>
+      <VStack gap="4">
         <Input
           type="text"
           name="text"
@@ -111,6 +119,15 @@ export function QuestionForm() {
         >
           {text ? t('generateButtonText.text') : t('generateButtonText.recommend')}
         </Button>
+        {limitCount !== null && (
+          <Text fontSize="sm" color="gray.950" mt="0" data-testid="limit-count">
+            {t('limitText.text')}:{' '}
+            <Text as="span" color="red.500" fontWeight="bold">
+              {limitCount}
+              {t('limitText.unit')}
+            </Text>
+          </Text>
+        )}
       </VStack>
       <Box mt={4}>
         {results?.map((result, index) => (
