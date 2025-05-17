@@ -12,6 +12,10 @@
     "generateButtonText": {
       "recommend": "AI 추천으로 생성하기",
       "text": "답변 생성하기"
+    },
+    "limitText": {
+      "text": "남은 API 요청 횟수",
+      "unit": "회"
     }
   }
 }

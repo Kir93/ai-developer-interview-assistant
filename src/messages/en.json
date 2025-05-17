@@ -12,6 +12,7 @@
     "generateButtonText": {
       "recommend": "Generate with AI Recommendation",
       "text": "Generate Answer"
-    }
+    },
+    "limitText": { "text": "Remaining API Requests", "unit": "requests" }
   }
 }
