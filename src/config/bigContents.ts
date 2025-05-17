@@ -20,3 +20,5 @@ export const notoSans = Noto_Sans_KR({
     'sans-serif'
   ]
 });
+
+export const DAILY_API_REQUEST_LIMIT = 3;
