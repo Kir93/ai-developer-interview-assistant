@@ -45,7 +45,7 @@ export function QuestionForm() {
         tags: ['react', 'frontend']
       }
     };
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV !== 'development') {
       generatedResult = await generateQuestion({
         question: text,
         difficulty,
