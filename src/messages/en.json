@@ -14,5 +14,10 @@
       "text": "Generate Answer"
     },
     "limitText": { "text": "Remaining API Requests", "unit": "requests" }
+  },
+  "login": {
+    "title": "Login",
+    "description": "Log in to save and manage your questions and answers.",
+    "googleButtonText": "Log in with Google"
   }
 }
