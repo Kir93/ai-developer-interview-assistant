@@ -1,5 +1,5 @@
-import { Center } from '@chakra-ui/react';
+import LoginLayout from '@components/layout/LoginLayout';
 
-export default function LoginLayout({ children }: { children: React.ReactNode }) {
-  return <Center h="100dvh">{children}</Center>;
+export default function LoginPageLayout({ children }: { children: React.ReactNode }) {
+  return <LoginLayout>{children}</LoginLayout>;
 }
