@@ -11,7 +11,6 @@ import { notoSans } from '@configs/bigContents';
 import ChakraUIProvider from '@provider/ChakraUIProvider';
 import ReactQueryProvider from '@provider/ReactQueryProvider';
 
-import AppLayout from '@components/layout/AppLayout';
 import { Toaster } from '@components/ui/toaster';
 
 import type { Metadata } from 'next';
@@ -84,7 +83,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
         <NextIntlClientProvider locale={lang} messages={messages}>
           <ReactQueryProvider>
             <ChakraUIProvider>
-              <AppLayout>{children}</AppLayout>
+              {children}
               <Toaster />
             </ChakraUIProvider>
           </ReactQueryProvider>
