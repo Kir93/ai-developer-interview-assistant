@@ -37,7 +37,7 @@ export default function SelectLocale() {
     }
   };
   return (
-    <Box position="fixed" top="10px" right="10px" zIndex="100">
+    <Box>
       <SelectRoot
         collection={localeList}
         size="sm"
@@ -45,14 +45,14 @@ export default function SelectLocale() {
         defaultValue={[locale]}
         onValueChange={onChangeLocale}
       >
-        <SelectTrigger justifyContent="center">
+        <SelectTrigger justifyContent="center" cursor="pointer">
           <SelectValueText />
         </SelectTrigger>
         <Portal>
           <Select.Positioner>
             <SelectContent>
               {localeList.items.map((item) => (
-                <SelectItem key={item.value} item={item.value}>
+                <SelectItem key={item.value} item={item.value} cursor="pointer">
                   {item.label}
                   <SelectItemIndicator />
                 </SelectItem>
