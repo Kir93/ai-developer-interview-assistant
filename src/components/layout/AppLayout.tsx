@@ -1,9 +1,6 @@
 import { PropsWithChildren } from 'react';
 
-import { Box, Container } from '@chakra-ui/react';
-
-import Footer from './Footer';
-import SelectLocale from './SelectLocale';
+import { Container } from '@chakra-ui/react';
 
 export default function AppLayout({ children }: PropsWithChildren) {
   return (
@@ -17,11 +14,7 @@ export default function AppLayout({ children }: PropsWithChildren) {
       m="auto auto 0"
       p="0"
     >
-      <SelectLocale />
-      <Box as="main" w="100%" px="21px" py="30px">
-        {children}
-      </Box>
-      <Footer />
+      {children}
     </Container>
   );
 }

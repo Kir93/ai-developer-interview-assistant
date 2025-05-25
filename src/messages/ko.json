@@ -17,5 +17,10 @@
       "text": "남은 API 요청 횟수",
       "unit": "회"
     }
+  },
+  "login": {
+    "title": "로그인",
+    "description": "로그인하여 질문과 답변을 저장하세요.",
+    "googleButtonText": "Google로 로그인"
   }
 }
