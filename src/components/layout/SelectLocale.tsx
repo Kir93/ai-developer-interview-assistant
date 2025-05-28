@@ -45,7 +45,11 @@ export default function SelectLocale() {
         defaultValue={[locale]}
         onValueChange={onChangeLocale}
       >
-        <SelectTrigger justifyContent="center" cursor="pointer">
+        <SelectTrigger
+          justifyContent="center"
+          cursor="pointer"
+          _hover={{ borderColor: 'primary.500' }}
+        >
           <SelectValueText />
         </SelectTrigger>
         <Portal>
