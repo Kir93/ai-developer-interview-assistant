@@ -7,7 +7,7 @@ const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['zustand'],
   experimental: {
-    optimizePackageImports: ['@chakra-ui/react']
+    optimizePackageImports: ['@chakra-ui/react', '@chakra-ui/next-js']
   },
   eslint: {
     ignoreDuringBuilds: true
