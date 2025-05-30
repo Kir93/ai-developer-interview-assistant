@@ -7,9 +7,9 @@ on:
 
 jobs:
   E2E-Tests:
-    if: github.event_name != 'pull_request' ||
-      github.actor != 'dependabot[bot]' ||
-      contains(join(github.event.pull_request.labels.*.name), 'run-e2e')
+    if: github.actor != 'dependabot[bot]'&& (
+      github.event_name != 'pull_request' ||
+      contains(join(github.event.pull_request.labels.*.name), 'run-e2e') )
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
