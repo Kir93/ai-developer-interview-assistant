@@ -18,9 +18,42 @@
       "unit": "회"
     }
   },
-  "login": {
-    "title": "로그인",
+  "auth": {
+    "loginTitle": "로그인",
     "description": "로그인하여 질문과 답변을 저장하세요.",
-    "googleButtonText": "Google로 로그인"
+    "googleButtonText": "Google로 로그인",
+    "logoutTitle": "로그아웃"
+  },
+  "history": {
+    "title": "질문 기록",
+    "description": "지금까지 생성한 질문과 답변을 확인하세요.",
+    "stats": {
+      "totalQuestions": "총 질문 수",
+      "hardDifficulty": "고급 난이도",
+      "diverseTopics": "다양한 주제"
+    },
+    "empty": {
+      "title": "아직 생성한 질문이 없습니다",
+      "description": "첫 번째 질문을 생성해보세요!",
+      "buttonText": "질문 생성하기"
+    },
+    "filters": {
+      "all": "전체",
+      "search": "검색",
+      "searchPlaceholder": "주제나 질문 내용으로 검색",
+      "difficulty": "난이도",
+      "date": "날짜"
+    },
+    "item": {
+      "createdAt": "생성일",
+      "topic": "주제",
+      "difficulty": "난이도",
+      "viewDetails": "자세히 보기"
+    },
+    "pagination": {
+      "previous": "이전",
+      "next": "다음",
+      "showing": "총 {{total}}개 중 {{start}}-{{end}}개 표시"
+    }
   }
 }
