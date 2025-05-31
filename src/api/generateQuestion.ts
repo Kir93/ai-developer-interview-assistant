@@ -22,6 +22,19 @@ export default async function generateQuestion({
   locale
 }: GenerateQuestionOptions): Promise<ResponseQuestionData> {
   try {
+    if (process.env.NODE_ENV === 'development') {
+      return {
+        success: true,
+        limitCount: 3,
+        data: {
+          question: 'React란?',
+          answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
+          topic: 'React',
+          difficulty,
+          tags: ['react', 'frontend']
+        }
+      };
+    }
     // 클라이언트 IP 주소 가져오기
     const ipAddress = await getClientIP();
 

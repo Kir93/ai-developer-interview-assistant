@@ -34,17 +34,11 @@ export function QuestionForm() {
   const handleSubscribe = debounce(async () => {
     if (isLoading) return;
     setIsLoading(true);
-
-    let generatedResult = DUMMY_QUESTION;
-
-    if (process.env.NODE_ENV === 'production') {
-      generatedResult = await generateQuestion({
-        question: text,
-        difficulty,
-        locale
-      });
-    }
-
+    const generatedResult = await generateQuestion({
+      question: text,
+      difficulty,
+      locale
+    });
     setIsLoading(false);
 
     toaster.create({
