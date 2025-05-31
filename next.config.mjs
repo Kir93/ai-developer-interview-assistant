@@ -5,7 +5,6 @@ const withNextIntl = createNextIntlPlugin();
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['zustand'],
   experimental: {
     optimizePackageImports: ['@chakra-ui/react', '@chakra-ui/next-js']
   },
