@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { Box, Button, HStack, Input, RadioGroup, Text, VStack } from '@chakra-ui/react';
+import { debounce } from 'es-toolkit';
 import { useLocale, useTranslations } from 'next-intl';
 
 import { Difficulty, QuestionData } from '@type/generateQuestion.types';
@@ -27,7 +28,8 @@ export function QuestionForm() {
   const [limitCount, setLimitCount] = useState<number | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubscribe = async () => {
+  const handleSubscribe = debounce(async () => {
+    if (isLoading) return;
     setIsLoading(true);
     let generatedResult: {
       success: boolean;
@@ -67,7 +69,7 @@ export function QuestionForm() {
       setResults((prev) => [generatedResult?.data as QuestionData, ...(prev || [])]);
       setLimitCount(generatedResult.limitCount || null);
     }
-  };
+  }, 300);
 
   return (
     <Box p={6} borderRadius="lg" boxShadow="md" bg="white" aria-label="Question Form">
