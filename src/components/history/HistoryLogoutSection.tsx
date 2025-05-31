@@ -3,6 +3,7 @@
 import { useState } from 'react';
 
 import { Box, Button } from '@chakra-ui/react';
+import { debounce } from 'es-toolkit';
 import { useTranslations } from 'next-intl';
 
 import { useRouter } from 'src/i18n/routing';
@@ -15,10 +16,10 @@ const HistoryLogoutSection = () => {
   const { signOut } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
 
-  const onClickSignOut = async () => {
-    if (isLoading) return; // 중복 클릭 방지
+  const onClickSignOut = debounce(async () => {
+    if (isLoading) return;
     setIsLoading(true);
-    await signOut()
+    signOut()
       .then(() => {
         router.replace('/');
       })
@@ -28,7 +29,7 @@ const HistoryLogoutSection = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  };
+  }, 300);
   return (
     <Box w="100%" textAlign="right">
       <Button
