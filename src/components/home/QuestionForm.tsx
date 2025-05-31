@@ -29,30 +29,11 @@ export function QuestionForm() {
 
   const handleSubscribe = async () => {
     setIsLoading(true);
-    let generatedResult: {
-      success: boolean;
-      limitCount?: number;
-      error?: string;
-      data?: QuestionData;
-    } = {
-      success: true,
-      limitCount: 3,
-      data: {
-        question: 'React란?',
-        answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
-        topic: 'React',
-        difficulty,
-        tags: ['react', 'frontend']
-      }
-    };
-    if (process.env.NODE_ENV !== 'development') {
-      generatedResult = await generateQuestion({
-        question: text,
-        difficulty,
-        locale
-      });
-    }
-
+    const generatedResult = await generateQuestion({
+      question: text,
+      difficulty,
+      locale
+    });
     setIsLoading(false);
 
     toaster.create({
