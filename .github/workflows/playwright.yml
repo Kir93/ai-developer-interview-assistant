@@ -63,15 +63,6 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: pnpm exec playwright install-deps
 
-      - name: Build Next.js app
-        run: pnpm test_build
-
-      - name: Start server
-        run: pnpm test_start &
-
-      - name: Wait for server
-        run: pnpm dlx wait-on http://localhost:3000 --timeout 60000
-
       - name: Run Playwright tests
         run: pnpm exec playwright test
 
