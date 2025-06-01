@@ -6,7 +6,9 @@ import { Box, Button, HStack, Input, RadioGroup, Text, VStack } from '@chakra-ui
 import { debounce } from 'es-toolkit';
 import { useLocale, useTranslations } from 'next-intl';
 
-import { Difficulty, QuestionData } from 'types/generateQuestion.types';
+import { DUMMY_QUESTION } from '@configs/bigContents';
+
+import { Difficulty, QuestionData } from '@type/generateQuestion.types';
 
 import generateQuestion from '@api/generateQuestion';
 
@@ -34,11 +36,17 @@ export function QuestionForm() {
   const handleSubscribe = debounce(async () => {
     if (isLoading) return;
     setIsLoading(true);
-    const generatedResult = await generateQuestion({
-      question: text,
-      difficulty,
-      locale
-    });
+
+    let generatedResult = DUMMY_QUESTION;
+
+    if (process.env.NODE_ENV !== 'development') {
+      generatedResult = await generateQuestion({
+        question: text,
+        difficulty,
+        locale
+      });
+    }
+
     setIsLoading(false);
 
     toaster.create({
