@@ -26,7 +26,7 @@ export default async function generateQuestion({
           question: 'React란?',
           answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
           topic: 'React',
-          difficulty,
+          difficulty: 'hard',
           tags: ['react', 'frontend']
         }
       };
