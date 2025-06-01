@@ -33,7 +33,8 @@ export const metadata: Metadata = {
     '최신 트렌드',
     '코딩',
     'React Query',
-    'Zustand'
+    'Zustand',
+    'Next.js'
   ],
   authors: [{ name: 'Kir93' }],
   openGraph: {
