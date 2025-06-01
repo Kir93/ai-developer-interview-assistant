@@ -5,7 +5,11 @@ import openai from '@configs/openai';
 import { generateQuestionPrompt } from '@configs/prompt';
 import supabase from '@configs/supabase';
 
-import { GenerateQuestionOptions, QuestionData } from '@type/generateQuestion.types';
+import {
+  GenerateQuestionOptions,
+  QuestionData,
+  ResponseQuestionData
+} from '@type/generateQuestion.types';
 
 import { getClientIP, getIPDailyApiUsage, incrementIPApiUsage } from './checkDailyRequest';
 
@@ -16,7 +20,7 @@ export default async function generateQuestion({
   question,
   difficulty = 'medium',
   locale
-}: GenerateQuestionOptions) {
+}: GenerateQuestionOptions): Promise<ResponseQuestionData> {
   try {
     // 클라이언트 IP 주소 가져오기
     const ipAddress = await getClientIP();

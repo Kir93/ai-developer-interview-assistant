@@ -1,5 +1,7 @@
 import { Noto_Sans_KR } from 'next/font/google';
 
+import { ResponseQuestionData } from '@type/generateQuestion.types';
+
 export const blurDataURL =
   'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==';
 
@@ -23,7 +25,7 @@ export const notoSans = Noto_Sans_KR({
 
 export const DAILY_API_REQUEST_LIMIT = 3;
 
-export const DUMMY_QUESTION = {
+export const DUMMY_QUESTION: ResponseQuestionData = {
   success: true,
   limitCount: 3,
   data: {
@@ -33,4 +35,4 @@ export const DUMMY_QUESTION = {
     difficulty: 'hard',
     tags: ['react', 'frontend']
   }
-} as const;
+};

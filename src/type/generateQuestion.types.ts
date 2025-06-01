@@ -16,3 +16,10 @@ export type QuestionData = {
   tags: string[];
   difficulty: Difficulty;
 };
+
+export type ResponseQuestionData = {
+  success: boolean;
+  error?: string;
+  limitCount?: number; // API 요청 한도
+  data?: QuestionData; // 생성된 질문 데이터
+};
