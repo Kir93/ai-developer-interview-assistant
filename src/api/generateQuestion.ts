@@ -18,7 +18,8 @@ export default async function generateQuestion({
   locale
 }: GenerateQuestionOptions) {
   try {
-    if (process.env.NODE_ENV === 'development') {
+    console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV !== 'production') {
       return {
         success: true,
         limitCount: 3,
