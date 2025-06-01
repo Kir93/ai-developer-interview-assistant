@@ -29,7 +29,6 @@ export function QuestionForm() {
 
   const handleSubscribe = async () => {
     setIsLoading(true);
-    console.log(process.env.NODE_ENV);
     const generatedResult = await generateQuestion({
       question: text,
       difficulty,

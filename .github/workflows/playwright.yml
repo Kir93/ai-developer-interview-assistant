@@ -12,7 +12,7 @@ on:
       - '**.md'
 
 env:
-  NODE_ENV: development
+  NODE_ENV: test
 
 jobs:
   E2E-Tests:
@@ -61,8 +61,11 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: pnpm exec playwright install-deps
 
+      - name: Build Next.js app
+        run: pnpm build
+
       - name: Start server
-        run: NODE_ENV=development pnpm dev &
+        run: pnpm start &
 
       - name: Wait for server
         run: pnpm dlx wait-on http://localhost:3000 --timeout 60000
