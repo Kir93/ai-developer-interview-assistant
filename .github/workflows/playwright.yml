@@ -11,6 +11,9 @@ on:
       - '.github/workflows/playwright.yml'
       - '**.md'
 
+env:
+  NODE_ENV: development
+
 jobs:
   E2E-Tests:
     if: |
@@ -41,13 +44,13 @@ jobs:
         run: pnpm exec playwright install --with-deps
 
       - name: Start server
-        run: pnpm dev &
+        run: cross-env NODE_ENV=development pnpm dev &
 
       - name: Wait for server
         run: pnpm dlx wait-on http://localhost:3000
 
       - name: Run Playwright tests
-        run: NODE_ENV=development pnpm exec playwright test
+        run: cross-env NODE_ENV=development pnpm exec playwright test
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
