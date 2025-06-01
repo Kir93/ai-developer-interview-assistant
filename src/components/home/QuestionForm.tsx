@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { Box, Button, HStack, Input, RadioGroup, Text, VStack } from '@chakra-ui/react';
 import { useLocale, useTranslations } from 'next-intl';
 
+import { DUMMY_QUESTION } from '@configs/bigContents';
+
 import { Difficulty, QuestionData } from '@type/generateQuestion.types';
 
 import generateQuestion from '@api/generateQuestion';
@@ -29,11 +31,17 @@ export function QuestionForm() {
 
   const handleSubscribe = async () => {
     setIsLoading(true);
-    const generatedResult = await generateQuestion({
-      question: text,
-      difficulty,
-      locale
-    });
+
+    let generatedResult = DUMMY_QUESTION;
+
+    if (process.env.NODE_ENV !== 'development') {
+      generatedResult = await generateQuestion({
+        question: text,
+        difficulty,
+        locale
+      });
+    }
+
     setIsLoading(false);
 
     toaster.create({

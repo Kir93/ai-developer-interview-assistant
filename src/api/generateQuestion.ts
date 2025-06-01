@@ -18,29 +18,6 @@ export default async function generateQuestion({
   locale
 }: GenerateQuestionOptions) {
   try {
-    // 테스트 환경이거나 프로덕션이 아닌 경우 더미 데이터 반환
-    const isTestEnvironment =
-      process.env.NODE_ENV === 'test' ||
-      process.env.NODE_ENV === 'development' ||
-      process.env.CI === 'true';
-
-    if (isTestEnvironment) {
-      console.log('🔧 Test/Development mode - returning mock data');
-      console.log('NODE_ENV:', process.env.NODE_ENV);
-      console.log('CI:', process.env.CI);
-
-      return {
-        success: true,
-        limitCount: 3,
-        data: {
-          question: 'React란?',
-          answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
-          topic: 'React',
-          difficulty: 'hard',
-          tags: ['react', 'frontend']
-        }
-      };
-    }
     // 클라이언트 IP 주소 가져오기
     const ipAddress = await getClientIP();
 

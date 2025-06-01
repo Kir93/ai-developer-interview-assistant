@@ -22,3 +22,15 @@ export const notoSans = Noto_Sans_KR({
 });
 
 export const DAILY_API_REQUEST_LIMIT = 3;
+
+export const DUMMY_QUESTION = {
+  success: true,
+  limitCount: 3,
+  data: {
+    question: 'React란?',
+    answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
+    topic: 'React',
+    difficulty: 'hard',
+    tags: ['react', 'frontend']
+  }
+} as const;
