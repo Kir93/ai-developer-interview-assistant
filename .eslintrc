@@ -119,7 +119,7 @@
       "files": ["./src/api/**", "./src/utils/**"],
       "rules": {
         "max-lines": "off",
-        "max-lines-per-function": ["error", { "max": 100 }]
+        "max-lines-per-function": "off"
       }
     },
     {

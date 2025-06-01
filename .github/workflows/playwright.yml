@@ -13,9 +13,9 @@ on:
 
 env:
   NODE_ENV: test
+  CI: true
   NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
   NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
-  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
   E2E-Tests:
@@ -40,12 +40,26 @@ jobs:
           node-version: lts/*
           cache: 'pnpm'
 
+      - name: Cache dependencies and build outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pnpm-store
+            ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx', '**.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-build-
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Get Playwright version
         id: playwright-version
-        run: echo "version=$(pnpm list @playwright/test --depth=0 | grep @playwright/test | cut -d@ -f3)" >> $GITHUB_OUTPUT
+        run: |
+          version=$(pnpm list @playwright/test --depth=0 | grep @playwright/test | sed -E 's/.*@([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          echo "version=$version" >> $GITHUB_OUTPUT
 
       - name: Cache Playwright browsers
         uses: actions/cache@v4

@@ -18,7 +18,17 @@ export default async function generateQuestion({
   locale
 }: GenerateQuestionOptions) {
   try {
-    if (process.env.NODE_ENV !== 'production') {
+    // 테스트 환경이거나 프로덕션이 아닌 경우 더미 데이터 반환
+    const isTestEnvironment =
+      process.env.NODE_ENV === 'test' ||
+      process.env.NODE_ENV === 'development' ||
+      process.env.CI === 'true';
+
+    if (isTestEnvironment) {
+      console.log('🔧 Test/Development mode - returning mock data');
+      console.log('NODE_ENV:', process.env.NODE_ENV);
+      console.log('CI:', process.env.CI);
+
       return {
         success: true,
         limitCount: 3,
