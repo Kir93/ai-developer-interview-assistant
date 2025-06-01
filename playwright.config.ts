@@ -25,6 +25,12 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure'
   },
+  webServer: {
+    command: 'npm run test_build && npm run test_start',
+    url: 'http://localhost:3000',
+    timeout: 120 * 1000, // 120초 대기
+    reuseExistingServer: !process.env.CI
+  },
 
   /* Configure projects for major browsers */
   projects: [
