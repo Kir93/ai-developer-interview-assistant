@@ -1,6 +1,6 @@
 import { Noto_Sans_KR } from 'next/font/google';
 
-import { ResponseQuestionData } from '@type/generateQuestion.types';
+import { ResponseQuestionData } from 'types/generateQuestion.types';
 
 export const blurDataURL =
   'data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAFklEQVR42mN8//HLfwYiAOOoQvoqBABbWyZJf74GZgAAAABJRU5ErkJggg==';
