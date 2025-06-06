@@ -6,9 +6,7 @@ import { Box, Button, HStack, Input, RadioGroup, Text, VStack } from '@chakra-ui
 import { debounce } from 'es-toolkit';
 import { useLocale, useTranslations } from 'next-intl';
 
-import { DUMMY_QUESTION } from '@configs/bigContents';
-
-import { Difficulty, QuestionData } from '@type/generateQuestion.types';
+import { Difficulty, QuestionData } from 'types/generateQuestion.types';
 
 import generateQuestion from '@api/generateQuestion';
 
