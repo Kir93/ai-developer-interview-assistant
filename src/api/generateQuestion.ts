@@ -1,15 +1,14 @@
 'use server';
 
+import { DAILY_API_REQUEST_LIMIT } from '@configs/bigContents';
+import openai from '@configs/openai';
+import { generateQuestionPrompt } from '@configs/prompt';
+import supabase from '@configs/supabase';
 import {
   GenerateQuestionOptions,
   QuestionData,
   ResponseQuestionData
 } from 'types/generateQuestion.types';
-
-import { DAILY_API_REQUEST_LIMIT } from '@config/bigContents';
-import openai from '@config/openai';
-import { generateQuestionPrompt } from '@config/prompt';
-import supabase from '@config/supabase';
 
 import { getClientIP, getIPDailyApiUsage, incrementIPApiUsage } from './checkDailyRequest';
 

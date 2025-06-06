@@ -33,9 +33,9 @@
       "@provider": ["provider"],
       "@api/*": ["api/*"],
       "@utils/*": ["utils/*"],
-      "@config/*": ["config/*"],
+      "@configs/*": ["config/*"],
       "@styles/*": ["styles/*"],
-      "@public/*": ["../public/*"],
+      "@public/*": ["public/*"],
       "@store/*": ["store/*"],
       "@atoms/*": ["atoms/*"],
       "@components/*": ["components/*"],
@@ -48,6 +48,7 @@
       }
     ]
   },
-  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }
