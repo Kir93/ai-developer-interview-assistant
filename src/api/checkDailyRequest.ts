@@ -3,9 +3,9 @@
 import dayjs from 'dayjs';
 import { headers } from 'next/headers';
 
-import { DAILY_API_REQUEST_LIMIT } from '@configs/bigContents';
-import supabase from '@configs/supabase';
-import { supabaseErrorCodes } from '@configs/supabaseErrorCodes';
+import { DAILY_API_REQUEST_LIMIT } from '@config/bigContents';
+import supabase from '@config/supabase';
+import { supabaseErrorCodes } from '@config/supabaseErrorCodes';
 
 /**
  * 클라이언트 IP 주소 가져오기

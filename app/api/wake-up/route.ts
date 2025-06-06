@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 
-import supabase from '@configs/supabase';
+import supabase from '@config/supabase';
 
 export async function GET() {
   const { data, status } = await supabase.from('questions').select('created_at').limit(1);

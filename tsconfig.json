@@ -33,18 +33,21 @@
       "@provider": ["provider"],
       "@api/*": ["api/*"],
       "@utils/*": ["utils/*"],
-      "@configs/*": ["config/*"],
+      "@config/*": ["config/*"],
       "@styles/*": ["styles/*"],
-      "@public/*": ["public/*"],
+      "@public/*": ["../public/*"],
       "@store/*": ["store/*"],
       "@atoms/*": ["atoms/*"],
       "@components/*": ["components/*"],
       "@provider/*": ["provider/*"]
     },
     "incremental": true,
-    "plugins": [{ "name": "next" }]
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }

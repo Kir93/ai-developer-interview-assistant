@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState } from 'react';
 
 import Image, { ImageProps } from 'next/image';
 
-import { blurDataURL } from '@configs/bigContents';
+import { blurDataURL } from '@config/bigContents';
 
 interface IProps extends ImageProps {
   fallbackSrc: string;

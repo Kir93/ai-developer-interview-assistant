@@ -6,7 +6,7 @@ import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
-import { notoSans } from '@configs/bigContents';
+import { notoSans } from '@config/bigContents';
 
 import ChakraUIProvider from '@provider/ChakraUIProvider';
 import ReactQueryProvider from '@provider/ReactQueryProvider';

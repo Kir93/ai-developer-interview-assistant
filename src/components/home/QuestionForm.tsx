@@ -5,10 +5,11 @@ import { useState } from 'react';
 import { Box, Button, HStack, Input, RadioGroup, Text, VStack } from '@chakra-ui/react';
 import { useLocale, useTranslations } from 'next-intl';
 
-import { DUMMY_QUESTION } from '@configs/bigContents';
 import { Difficulty, QuestionData } from 'types/generateQuestion.types';
 
 import generateQuestion from '@api/generateQuestion';
+
+import { DUMMY_QUESTION } from '@config/bigContents';
 
 import QuestionResponseCard from '@components/ui/QuestionResponseCard';
 import { toaster } from '@components/ui/toaster';

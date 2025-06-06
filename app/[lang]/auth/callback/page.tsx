@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { Center, Spinner, Text, VStack } from '@chakra-ui/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-import supabase from '@configs/supabase';
+import supabase from '@config/supabase';
 
 const RETRY_DELAY_MS = 2000;
 
