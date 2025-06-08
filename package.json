@@ -47,7 +47,7 @@
     "@next/eslint-plugin-next": "^15.3.3",
     "@playwright/test": "^1.52.0",
     "@tanstack/react-query-devtools": "^5.75.2",
-    "@types/node": "22.15.17",
+    "@types/node": "22.15.30",
     "@types/react": "^19.1.6",
     "@types/react-dom": "^19.1.5",
     "cross-env": "^7.0.3",
