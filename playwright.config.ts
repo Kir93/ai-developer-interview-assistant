@@ -29,8 +29,8 @@ export default defineConfig({
     stdout: 'pipe', // 서버 로그 출력
     stderr: 'pipe',
     env: {
-      NODE_ENV: 'test',
-      ...process.env
+      ...process.env,
+      NODE_ENV: 'test'
     }
   },
 
