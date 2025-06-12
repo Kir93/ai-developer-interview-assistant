@@ -1,6 +1,8 @@
 import { ReactNode } from 'react';
 
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
+import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { notFound } from 'next/navigation';
 import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
@@ -86,6 +88,8 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
             <ChakraUIProvider>
               {children}
               <Toaster />
+              <Analytics />
+              <SpeedInsights />
             </ChakraUIProvider>
           </ReactQueryProvider>
         </NextIntlClientProvider>
