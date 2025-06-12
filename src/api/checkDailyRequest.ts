@@ -58,7 +58,7 @@ export async function getIPDailyApiUsage(ipAddress: string): Promise<number> {
   const startOfDay = dayjs().startOf('day').toISOString();
   const endOfDay = dayjs().endOf('day').toISOString();
 
-  if (ipAddress === 'development-ip' && process.env.NODE_ENV === 'development') {
+  if (ipAddress === 'development-ip' && process.env.NODE_ENV !== 'production') {
     // 개발 환경에서는 항상 1로 설정
     return 1;
   }
