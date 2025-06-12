@@ -6,10 +6,9 @@
   "scripts": {
     "dev": "next",
     "build": "cross-env NODE_ENV=production next build",
-    "test_build": "cross-env NODE_ENV=test next build",
     "postbuild": "next-sitemap --config sitemap.config.js",
     "start": "cross-env NODE_ENV=production next start",
-    "test_start": "cross-env NODE_ENV=test next start",
+    "test_start": "cross-env NODE_ENV=test next",
     "analyzer": "cross-env NODE_ENV=production ANALYZE=true next build",
     "type-check": "tsc",
     "depcheck": "npx depcheck",

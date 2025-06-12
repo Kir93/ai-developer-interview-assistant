@@ -22,19 +22,12 @@ export default defineConfig({
   },
 
   webServer: {
-    command: 'npm run test_build && npm run test_start',
+    command: 'pnpm run test_start',
     url: 'http://localhost:3000',
     timeout: 120 * 1000, // 120초 대기
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe', // 서버 로그 출력
-    stderr: 'pipe',
-    env: {
-      ...process.env,
-      NODE_ENV: 'test',
-      NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
-      NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-      CI: process.env.CI
-    }
+    stderr: 'pipe'
   },
 
   // CI에서는 Chrome만 사용하여 성능 최적화
