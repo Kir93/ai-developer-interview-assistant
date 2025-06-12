@@ -24,5 +24,5 @@ you can easily and quickly generate developer interview questions and answers ta
 ## Tech Stack
 
 - **Frontend**: Next.js (App Router), React, TypeScript, Chakra UI, Zustand, React Query
-- **Backend/API**: OpenAI API, Supabase
+- **Backend(API)**: OpenAI, Supabase
 - **DevOps**: Vercel, ESLint, Prettier, Husky, Lint-staged
