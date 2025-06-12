@@ -27,7 +27,11 @@ export default defineConfig({
     timeout: 120 * 1000, // 120초 대기
     reuseExistingServer: !process.env.CI,
     stdout: 'pipe', // 서버 로그 출력
-    stderr: 'pipe'
+    stderr: 'pipe',
+    env: {
+      NODE_ENV: 'test',
+      ...process.env
+    }
   },
 
   // CI에서는 Chrome만 사용하여 성능 최적화
