@@ -17,7 +17,6 @@ you can easily and quickly generate developer interview questions and answers ta
 - **Question/Answer storage and management (Coming Soon)**
   - Securely save generated questions and answers with Supabase, and revisit them anytime.
 - **Real-time UX**
-
   - Intuitive and responsive UI based on Chakra UI, fast data handling with React Query, and state management.
 
 ---
