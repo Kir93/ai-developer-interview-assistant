@@ -79,14 +79,8 @@ export default async function generateQuestion({
 
     return {
       success: true,
-      data: {
-        question: 'React란?',
-        answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
-        topic: 'React',
-        difficulty,
-        tags: ['react', 'frontend']
-      },
-      limitCount: limitCount
+      data: questions,
+      limitCount
     };
   } catch (error) {
     console.error('Error generating questions:', error);
