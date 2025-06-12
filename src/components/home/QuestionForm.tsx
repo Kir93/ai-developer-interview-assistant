@@ -35,7 +35,7 @@ export function QuestionForm() {
 
     let generatedResult = DUMMY_QUESTION;
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV === 'production') {
       generatedResult = await generateQuestion({
         question: text,
         difficulty,
