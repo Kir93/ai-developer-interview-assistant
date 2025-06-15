@@ -63,6 +63,6 @@ jobs:
             --build-env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
             --env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
             --confirm
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           alias-domains: ${{ env.DOMAIN }}
           github-comment: false
-          github-token: ${{ secrets.GITHUB_TOKEN }}
