@@ -60,20 +60,11 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          alias-domains: |
+            ${{ env.DOMAIN }}
           vercel-args: >
             --build-env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
             --env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
             --confirm
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: false
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      - name: Assign alias via curl
-        env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-          DEPLOY_ID: ${{ steps.deploy.outputs.deployment-id }}
-        run: |
-          curl -X POST "https://api.vercel.com/v2/deployments/${DEPLOY_ID}/aliases" \
-            -H "Authorization: Bearer $VERCEL_TOKEN" \
-            -H "Content-Type: application/json" \
-            -d "{\"alias\":\"${DOMAIN}\"}"
