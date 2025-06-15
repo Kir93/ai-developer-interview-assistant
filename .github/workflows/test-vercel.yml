@@ -63,8 +63,6 @@ jobs:
             --build-env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
             --env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
             --confirm
+          alias-domains: ${{ env.DOMAIN }}
+          github-comment: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Assign Alias (Custom Domain)
-        run: |
-          npx vercel alias ${{ steps.deploy.outputs.preview-url }} ${{ env.DOMAIN }} \
-            --token ${{ secrets.VERCEL_TOKEN }}
