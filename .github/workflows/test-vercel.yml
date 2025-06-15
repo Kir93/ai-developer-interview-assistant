@@ -37,16 +37,16 @@ jobs:
         run: |
           case "${{ steps.labels.outputs.env }}" in
             dev)
-              echo "API_URL=https://dev.api.test.co.kr" >> $GITHUB_ENV
-              echo "DOMAIN=dev.test.co.kr" >> $GITHUB_ENV
+              echo "API_URL=https://dev.api.interview.kir93.co.kr" >> $GITHUB_ENV
+              echo "DOMAIN=dev.interview.kir93.co.kr" >> $GITHUB_ENV
               ;;
             stage)
-              echo "API_URL=https://stage.api.test.co.kr" >> $GITHUB_ENV
-              echo "DOMAIN=stage.test.co.kr" >> $GITHUB_ENV
+              echo "API_URL=https://stage.api.interview.kir93.co.kr" >> $GITHUB_ENV
+              echo "DOMAIN=stage.interview.kir93.co.kr" >> $GITHUB_ENV
               ;;
             test)
-              echo "API_URL=https://test.api.test.co.kr" >> $GITHUB_ENV
-              echo "DOMAIN=test.test.co.kr" >> $GITHUB_ENV
+              echo "API_URL=https://test.api.interview.kir93.co.kr" >> $GITHUB_ENV
+              echo "DOMAIN=test.interview.kir93.co.kr" >> $GITHUB_ENV
               ;;
             *)
               echo "Unknown environment label"; exit 1
