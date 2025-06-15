@@ -57,7 +57,7 @@ jobs:
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
           vercel-args: >
             --build-env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
-            --scope your-team-name
+            --scope "kir93's projects"
             --confirm
             --env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
             --alias ${{ env.DOMAIN }}
