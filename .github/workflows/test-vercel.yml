@@ -59,10 +59,11 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          alias-domains: ${{ env.DOMAIN }}
           vercel-args: >
             --build-env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
             --env NEXT_PUBLIC_API_URL=${{ env.API_URL }}
+            --scope kir931028
             --confirm
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          alias-domains: ${{ env.DOMAIN }}
           github-comment: false
