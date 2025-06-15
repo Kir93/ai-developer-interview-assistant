@@ -40,6 +40,10 @@ jobs:
               echo "API_URL=https://stage.api.test.co.kr" >> $GITHUB_ENV
               echo "DOMAIN=stage.test.co.kr" >> $GITHUB_ENV
               ;;
+            test)
+              echo "API_URL=https://test.api.test.co.kr" >> $GITHUB_ENV
+              echo "DOMAIN=test.test.co.kr" >> $GITHUB_ENV
+              ;;
             *)
               echo "Unknown environment label"; exit 1
               ;;
