@@ -54,6 +54,7 @@ jobs:
           esac
 
       - name: Deploy to Vercel with Subdomain
+        id: deploy
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
@@ -65,10 +66,14 @@ jobs:
             --confirm
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: false
-      - name: Debug whoami
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      - name: Assign alias via curl
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          DEPLOY_ID: ${{ steps.deploy.outputs.deployment-id }}
         run: |
-          npx vercel whoami --token ${{ secrets.VERCEL_TOKEN }}        
-      - name: Assign Custom Domain Alias
-        run: |
-          npx vercel alias ${{ steps.deploy.outputs.preview-url }} ${{ env.DOMAIN }} \
-            --token ${{ secrets.VERCEL_TOKEN }}
+          curl -X POST "https://api.vercel.com/v2/deployments/${DEPLOY_ID}/aliases" \
+            -H "Authorization: Bearer $VERCEL_TOKEN" \
+            -H "Content-Type: application/json" \
+            -d "{\"alias\":\"${DOMAIN}\"}"
