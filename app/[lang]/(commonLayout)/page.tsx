@@ -5,7 +5,6 @@ import { QuestionForm } from '@components/home/QuestionForm';
 
 export default function Home() {
   const t = useTranslations('home');
-  console.log(process.env.NEXT_PUBLIC_API_URL);
   return (
     <Container maxW="container.md" py={10}>
       <VStack spaceY={6} align="stretch">
