@@ -65,6 +65,9 @@ jobs:
             --confirm
           github-token: ${{ secrets.GITHUB_TOKEN }}
           github-comment: false
+      - name: Debug whoami
+        run: |
+          npx vercel whoami --token ${{ secrets.VERCEL_TOKEN }}        
       - name: Assign Custom Domain Alias
         run: |
           npx vercel alias ${{ steps.deploy.outputs.preview-url }} ${{ env.DOMAIN }} \
