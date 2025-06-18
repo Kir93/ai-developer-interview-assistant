@@ -7,55 +7,14 @@ import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
-import { notoSans } from '@config/bigContents';
+import { metadata, notoSans } from '@config/bigContents';
 
 import ChakraUIProvider from '@provider/ChakraUIProvider';
 import ReactQueryProvider from '@provider/ReactQueryProvider';
 
 import { Toaster } from '@components/ui/toaster';
 
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'AI Developer Interview Assistant',
-  description: 'Get the latest development trends and interview tips delivered to your inbox.',
-  keywords: [
-    'AI',
-    'Developer',
-    'Interview',
-    'Assistant',
-    'NextJS',
-    'React',
-    'ChakraUI',
-    '프론트엔드',
-    '면접',
-    '개발자',
-    '인터뷰',
-    '최신 트렌드',
-    '코딩',
-    'React Query',
-    'Zustand',
-    'Next.js'
-  ],
-  authors: [{ name: 'Kir93' }],
-  openGraph: {
-    title: 'AI Developer Interview Assistant',
-    description: 'Get the latest development trends and interview tips delivered to your inbox.',
-    images: 'https://interview.kir93.co.kr/thumbnail.png',
-    url: 'https://interview.kir93.co.kr',
-    siteName: 'AI Developer Interview Assistant',
-    type: 'website'
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'AI Developer Interview Assistant',
-    description: 'Get the latest development trends and interview tips delivered to your inbox.',
-    images: 'https://interview.kir93.co.kr/thumbnail.png',
-    creator: '@kir93',
-    site: 'https://interview.kir93.co.kr'
-  },
-  metadataBase: new URL('https://interview.kir93.co.kr')
-};
+export { metadata };
 
 type RootLayoutProps = {
   children: ReactNode;
