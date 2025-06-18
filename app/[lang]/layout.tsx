@@ -72,14 +72,12 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   }
   return (
     <html lang={lang} className={notoSans.className} suppressHydrationWarning>
-      <head>
+      <body>
         <Script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
           crossOrigin="anonymous"
         />
-      </head>
-      <body>
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID!} />
         <NextIntlClientProvider locale={lang} messages={messages}>
