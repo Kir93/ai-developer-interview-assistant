@@ -1,6 +1,6 @@
 import { getRequestConfig } from 'next-intl/server';
 
-import { routing } from './routing';
+import { routing } from './i18nRouting';
 
 export default getRequestConfig(async ({ requestLocale }) => {
   // 이것은 일반적으로 '[locale]' 세그먼트에 해당합니다

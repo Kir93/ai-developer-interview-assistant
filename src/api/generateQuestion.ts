@@ -1,11 +1,15 @@
 'use server';
 
-import { DAILY_API_REQUEST_LIMIT } from '@configs/bigContents';
-import openai from '@configs/openai';
-import { generateQuestionPrompt } from '@configs/prompt';
-import supabase from '@configs/supabase';
+import {
+  GenerateQuestionOptions,
+  QuestionData,
+  ResponseQuestionData
+} from 'types/generateQuestion.types';
 
-import { GenerateQuestionOptions, QuestionData } from '@type/generateQuestion.types';
+import { DAILY_API_REQUEST_LIMIT } from '@config/bigContents';
+import openai from '@config/openai';
+import { generateQuestionPrompt } from '@config/prompt';
+import supabase from '@config/supabase';
 
 import { getClientIP, getIPDailyApiUsage, incrementIPApiUsage } from './checkDailyRequest';
 
@@ -16,7 +20,7 @@ export default async function generateQuestion({
   question,
   difficulty = 'medium',
   locale
-}: GenerateQuestionOptions) {
+}: GenerateQuestionOptions): Promise<ResponseQuestionData> {
   try {
     // 클라이언트 IP 주소 가져오기
     const ipAddress = await getClientIP();
@@ -75,14 +79,8 @@ export default async function generateQuestion({
 
     return {
       success: true,
-      data: {
-        question: 'React란?',
-        answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
-        topic: 'React',
-        difficulty,
-        tags: ['react', 'frontend']
-      },
-      limitCount: limitCount
+      data: questions,
+      limitCount
     };
   } catch (error) {
     console.error('Error generating questions:', error);

@@ -2,14 +2,29 @@ name: Playwright Tests
 on:
   push:
     branches: [main, master]
+    paths-ignore:
+      - '.github/workflows/playwright.yml'
+      - '**.md'
   pull_request:
     branches: [main, master]
+    paths-ignore:
+      - '.github/workflows/playwright.yml'
+      - '**.md'
+
+env:
+  NODE_ENV: test
+  CI: true
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
 jobs:
   E2E-Tests:
-    if: github.event_name != 'pull_request' ||
-      github.actor != 'dependabot[bot]' ||
-      contains(join(github.event.pull_request.labels.*.name), 'run-e2e')
+    if: |
+      (github.event_name == 'push' && github.actor != 'dependabot[bot]') ||
+      (github.event_name == 'pull_request' && 
+      !contains(join(github.event.pull_request.labels.*.name), 'no-e2e') &&
+      (github.actor != 'dependabot[bot]' || 
+      contains(join(github.event.pull_request.labels.*.name), 'run-e2e')))
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -25,20 +40,46 @@ jobs:
           node-version: lts/*
           cache: 'pnpm'
 
+      - name: Cache dependencies and build outputs
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pnpm-store
+            ${{ github.workspace }}/.next/cache
+            ${{ github.workspace }}/node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx', '**.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml') }}-
+            ${{ runner.os }}-build-
+
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Install Playwright Browsers
+      - name: Get Playwright version
+        id: playwright-version
+        run: |
+          version=$(pnpm list @playwright/test --depth=0 | grep @playwright/test | sed -E 's/.*@([0-9]+\.[0-9]+\.[0-9]+).*/\1/')
+          echo "version=$version" >> $GITHUB_OUTPUT
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+          restore-keys: |
+            playwright-${{ runner.os }}-
+
+      - name: Install Playwright Browsers (only if cache miss)
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: pnpm exec playwright install --with-deps
 
-      - name: Start server
-        run: pnpm dev &
-
-      - name: Wait for server
-        run: pnpm dlx wait-on http://localhost:3000
+      - name: Install Playwright system dependencies (if cache hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: pnpm exec playwright install-deps
 
       - name: Run Playwright tests
-        run: NODE_ENV=development pnpm exec playwright test
+        run: pnpm exec playwright test
 
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}

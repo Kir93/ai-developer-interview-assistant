@@ -17,7 +17,6 @@ you can easily and quickly generate developer interview questions and answers ta
 - **Question/Answer storage and management (Coming Soon)**
   - Securely save generated questions and answers with Supabase, and revisit them anytime.
 - **Real-time UX**
-
   - Intuitive and responsive UI based on Chakra UI, fast data handling with React Query, and state management.
 
 ---
@@ -25,7 +24,5 @@ you can easily and quickly generate developer interview questions and answers ta
 ## Tech Stack
 
 - **Frontend**: Next.js (App Router), React, TypeScript, Chakra UI, Zustand, React Query
-- **Backend/API**: OpenAI API, Supabase
+- **Backend(API)**: OpenAI, Supabase
 - **DevOps**: Vercel, ESLint, Prettier, Husky, Lint-staged
-
-**[한국어 README](README-ko.md)**

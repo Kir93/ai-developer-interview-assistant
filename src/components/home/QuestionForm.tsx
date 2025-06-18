@@ -6,10 +6,13 @@ import { Box, Button, HStack, Input, RadioGroup, Text, VStack } from '@chakra-ui
 import { debounce } from 'es-toolkit';
 import { useLocale, useTranslations } from 'next-intl';
 
-import { Difficulty, QuestionData } from '@type/generateQuestion.types';
+import { Difficulty, QuestionData } from 'types/generateQuestion.types';
 
 import generateQuestion from '@api/generateQuestion';
 
+import { DUMMY_QUESTION } from '@config/bigContents';
+
+import QuestionResponseCard from '@components/ui/QuestionResponseCard';
 import { toaster } from '@components/ui/toaster';
 
 export function QuestionForm() {
@@ -31,23 +34,10 @@ export function QuestionForm() {
   const handleSubscribe = debounce(async () => {
     if (isLoading) return;
     setIsLoading(true);
-    let generatedResult: {
-      success: boolean;
-      limitCount?: number;
-      error?: string;
-      data?: QuestionData;
-    } = {
-      success: true,
-      limitCount: 3,
-      data: {
-        question: 'React란?',
-        answer: 'React는 Facebook에서 개발한 UI 라이브러리입니다.',
-        topic: 'React',
-        difficulty,
-        tags: ['react', 'frontend']
-      }
-    };
-    if (process.env.NODE_ENV !== 'development') {
+
+    let generatedResult = DUMMY_QUESTION;
+
+    if (process.env.NODE_ENV === 'production') {
       generatedResult = await generateQuestion({
         question: text,
         difficulty,
@@ -133,99 +123,7 @@ export function QuestionForm() {
       </VStack>
       <Box mt={4}>
         {results?.map((result, index) => (
-          <Box
-            key={result.question + index}
-            mt={4}
-            p={5}
-            borderRadius="md"
-            bg="blue.50"
-            borderWidth="1px"
-            borderColor="blue.200"
-            shadow="sm"
-            data-testid={`result-${index}`}
-          >
-            <VStack align="stretch" gap={4}>
-              <Box>
-                <HStack mb={2}>
-                  <Text
-                    fontWeight="bold"
-                    color="blue.700"
-                    fontSize="lg"
-                    data-testid="question-label"
-                  >
-                    Question:
-                  </Text>
-                  <Text fontWeight="medium" data-testid="question-content">
-                    {result.question}
-                  </Text>
-                </HStack>
-                <Box bg="white" p={4} borderRadius="md" borderWidth="1px" borderColor="blue.100">
-                  <Text whiteSpace="pre-wrap" color="gray.700" data-testid="answer-content">
-                    {result.answer}
-                  </Text>
-                </Box>
-              </Box>
-
-              <HStack justify="space-between" wrap="wrap">
-                <HStack>
-                  <Text fontWeight="bold" color="blue.700" data-testid="topic-label">
-                    Topic:
-                  </Text>
-                  <Text data-testid="topic-content">{result.topic}</Text>
-                </HStack>
-                <HStack>
-                  <Text fontWeight="bold" color="blue.700" data-testid="difficulty-label">
-                    Difficulty:
-                  </Text>
-                  <Box
-                    px={2}
-                    py={1}
-                    borderRadius="full"
-                    bg={
-                      result.difficulty === 'easy'
-                        ? 'green.100'
-                        : result.difficulty === 'medium'
-                          ? 'yellow.100'
-                          : 'red.100'
-                    }
-                    color={
-                      result.difficulty === 'easy'
-                        ? 'green.700'
-                        : result.difficulty === 'medium'
-                          ? 'yellow.700'
-                          : 'red.700'
-                    }
-                    fontSize="sm"
-                    data-testid="difficulty-content"
-                  >
-                    {result.difficulty}
-                  </Box>
-                </HStack>
-              </HStack>
-
-              <Box>
-                <Text fontWeight="bold" color="blue.700" mb={2} data-testid="tags-label">
-                  Tags:
-                </Text>
-                <HStack gap={2} wrap="wrap">
-                  {result.tags.map((tag, index) => (
-                    <Box
-                      key={index}
-                      px={3}
-                      py={1}
-                      borderRadius="full"
-                      bg="gray.100"
-                      color="gray.700"
-                      fontSize="sm"
-                      data-testid={`tag-${tag}`}
-                    >
-                      {tag}
-                    </Box>
-                  ))}
-                </HStack>
-              </Box>
-            </VStack>
-          </Box>
+          <QuestionResponseCard key={result.question + index} result={result} index={index} />
         ))}
       </Box>
     </Box>

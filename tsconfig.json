@@ -20,33 +20,34 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@api": ["src/api"],
-      "@utils": ["src/utils"],
-      "@config": ["src/config"],
-      "@styles": ["src/styles"],
-      "@public": ["public"],
-      "@store": ["src/store"],
-      "@atoms": ["src/atoms"],
-      "@components": ["src/components"],
-      "@provider": ["src/provider"],
-      "@type": ["src/type"],
-      "@api/*": ["src/api/*"],
-      "@utils/*": ["src/utils/*"],
-      "@configs/*": ["src/config/*"],
-      "@styles/*": ["src/styles/*"],
-      "@public/*": ["public/*"],
-      "@store/*": ["src/store/*"],
-      "@atoms/*": ["src/atoms/*"],
-      "@components/*": ["src/components/*"],
-      "@provider/*": ["src/provider/*"],
-      "@type/*": ["src/type/*"]
+      "@api": ["api"],
+      "@utils": ["utils"],
+      "@config": ["config"],
+      "@styles": ["styles"],
+      "@public": ["../public"],
+      "@store": ["store"],
+      "@atoms": ["atoms"],
+      "@components": ["components"],
+      "@provider": ["provider"],
+      "@api/*": ["api/*"],
+      "@utils/*": ["utils/*"],
+      "@config/*": ["config/*"],
+      "@styles/*": ["styles/*"],
+      "@public/*": ["../public/*"],
+      "@store/*": ["store/*"],
+      "@atoms/*": ["atoms/*"],
+      "@components/*": ["components/*"],
+      "@provider/*": ["provider/*"]
     },
     "incremental": true,
-    "plugins": [{ "name": "next" }]
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
-
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "global.d.ts"],
+  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }

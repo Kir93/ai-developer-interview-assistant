@@ -4,18 +4,13 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  testDir: './tests',
-  /* Run tests in files in parallel */
+  testDir: './src/tests',
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  reporter: process.env.CI ? [['html'], ['github']] : 'html',
+
   use: {
     baseURL: 'http://localhost:3000',
     headless: true,
@@ -26,21 +21,35 @@ export default defineConfig({
     video: 'retain-on-failure'
   },
 
-  /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] }
-    },
+  webServer: {
+    command: 'pnpm run test_start',
+    url: 'http://localhost:3000',
+    timeout: 120 * 1000, // 120초 대기
+    reuseExistingServer: !process.env.CI,
+    stdout: 'pipe', // 서버 로그 출력
+    stderr: 'pipe'
+  },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] }
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] }
-    }
-  ]
+  // CI에서는 Chrome만 사용하여 성능 최적화
+  projects: process.env.CI
+    ? [
+        {
+          name: 'chromium',
+          use: { ...devices['Desktop Chrome'] }
+        }
+      ]
+    : [
+        {
+          name: 'chromium',
+          use: { ...devices['Desktop Chrome'] }
+        },
+        {
+          name: 'firefox',
+          use: { ...devices['Desktop Firefox'] }
+        },
+        {
+          name: 'webkit',
+          use: { ...devices['Desktop Safari'] }
+        }
+      ]
 });

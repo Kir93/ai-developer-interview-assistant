@@ -1,4 +1,4 @@
-import { GenerateQuestionOptions } from '@type/generateQuestion.types';
+import { GenerateQuestionOptions } from 'types/generateQuestion.types';
 
 const promptTemplate = process.env.PROMPT_TEMPLATE ?? '';
 

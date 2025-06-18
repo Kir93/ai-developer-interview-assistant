@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { useLocale } from 'next-intl';
 
-import { usePathname, useRouter } from 'src/i18n/routing';
+import { usePathname, useRouter } from '@config/i18nRouting';
 
 const localeList = createListCollection({
   items: [

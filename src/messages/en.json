@@ -1,4 +1,7 @@
 {
+  "layout": {
+    "footer": "If you have any changes or additional requests, please contact us at the email address below."
+  },
   "home": {
     "title": "AI Developer Interview Assistant",
     "subTitle": "Get the latest development trends and interview tips with AI.",

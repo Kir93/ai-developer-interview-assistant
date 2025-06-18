@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { User } from '@supabase/supabase-js';
 import { useLocale } from 'next-intl';
 
-import supabase from '@configs/supabase';
+import supabase from '@config/supabase';
 
 /**
  * Supabase 인증 상태 관리 및 인증 작업을 위한 커스텀 React 훅입니다.

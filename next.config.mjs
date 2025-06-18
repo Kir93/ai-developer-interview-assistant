@@ -1,11 +1,10 @@
 /** @type {import('next').NextConfig} */
 import createNextIntlPlugin from 'next-intl/plugin';
 
-const withNextIntl = createNextIntlPlugin();
+const withNextIntl = createNextIntlPlugin('./src/config/i18nRequest.ts');
 
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['zustand'],
   experimental: {
     optimizePackageImports: ['@chakra-ui/react', '@chakra-ui/next-js']
   },
