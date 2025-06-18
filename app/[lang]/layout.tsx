@@ -3,7 +3,6 @@ import { ReactNode } from 'react';
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/next';
 import { notFound } from 'next/navigation';
-import Script from 'next/script';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 
@@ -32,7 +31,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   return (
     <html lang={lang} className={notoSans.className} suppressHydrationWarning>
       <body>
-        <Script
+        <script
           async
           src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
           crossOrigin="anonymous"
