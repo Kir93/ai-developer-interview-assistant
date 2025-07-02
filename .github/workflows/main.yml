@@ -13,4 +13,6 @@ jobs:
         if: github.event_name != 'pull_request'
         run: |
           echo "Calling wake-up API..."
-          curl --silent --show-error --fail "${{ secrets.MY_API_ENDPOINT }}/api/wake-up"
+          response=$(curl --silent --show-error --location "${{ secrets.MY_API_ENDPOINT }}/api/wake-up")
+          echo "✅ Response:"
+          echo "$response"
