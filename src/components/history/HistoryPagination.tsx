@@ -3,7 +3,7 @@ import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { Box, Button, HStack, IconButton, Text } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
-import { HistoryPagination } from '@type/history.types';
+import { HistoryPagination } from 'types/history.types';
 
 interface HistoryPaginationProps {
   pagination: HistoryPagination;

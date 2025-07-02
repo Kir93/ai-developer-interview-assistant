@@ -4,9 +4,9 @@ import { BiHistory } from 'react-icons/bi';
 
 import { IconButton } from '@chakra-ui/react';
 
-import { Link } from 'src/i18n/routing';
-
 import useAuth from '@utils/useAuth';
+
+import { Link } from '@config/i18nRouting';
 
 interface LinkNavProps {
   type?: 'login' | 'common' | 'afterLogin';

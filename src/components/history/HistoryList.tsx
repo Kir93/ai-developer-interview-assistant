@@ -2,7 +2,7 @@ import { Box, Button, Card, Container, Heading, HStack, Text, VStack } from '@ch
 import Link from 'next/link';
 import { useTranslations } from 'next-intl';
 
-import { HistoryItem } from '@type/history.types';
+import { HistoryItem } from 'types/history.types';
 
 import HistoryLogoutSection from './HistoryLogoutSection';
 

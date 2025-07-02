@@ -16,7 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
-import { HistoryFilters } from '@type/history.types';
+import { HistoryFilters } from 'types/history.types';
 
 interface HistoryFiltersProps {
   filters: HistoryFilters;
