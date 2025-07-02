@@ -3,12 +3,12 @@ on:
   push:
     branches: [main, master]
     paths-ignore:
-      - '.github/workflows/playwright.yml'
+      - '.github/workflows/**'
       - '**.md'
   pull_request:
     branches: [main, master]
     paths-ignore:
-      - '.github/workflows/playwright.yml'
+      - '.github/workflows/**'
       - '**.md'
 
 env:
