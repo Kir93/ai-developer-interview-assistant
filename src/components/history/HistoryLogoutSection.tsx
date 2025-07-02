@@ -6,9 +6,9 @@ import { Box, Button } from '@chakra-ui/react';
 import { debounce } from 'es-toolkit';
 import { useTranslations } from 'next-intl';
 
-import { useRouter } from 'src/i18n/routing';
-
 import useAuth from '@utils/useAuth';
+
+import { useRouter } from '@config/i18nRouting';
 
 const HistoryLogoutSection = () => {
   const router = useRouter();
