@@ -15,10 +15,10 @@ import { Toaster } from '@components/ui/toaster';
 
 export { metadata };
 
-type RootLayoutProps = {
+interface RootLayoutProps {
   children: ReactNode;
   params: Promise<{ lang: string }>;
-};
+}
 
 export default async function RootLayout({ children, params }: RootLayoutProps) {
   const { lang } = await params;
@@ -26,6 +26,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   try {
     messages = await getMessages({ locale: lang });
   } catch (error) {
+    console.error(`Failed to load messages for locale "${lang}":`, error);
     notFound();
   }
   return (
@@ -33,8 +34,8 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
       <body>
         <script
           async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
           crossOrigin="anonymous"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
         />
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID!} />
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GA_ID!} />

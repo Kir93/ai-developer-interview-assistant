@@ -1,5 +1,9 @@
 import { getServerSideSitemap } from 'next-sitemap';
 
+/*
+ * Boilerplate code for dynamic sitemap generation.
+ * This page is not actually used, but demonstrates how to generate dynamic sitemaps.
+ */
 export async function GET() {
   const siteUrl = process.env.NEXT_PUBLIC_DOMAIN_URL || 'http://localhost:3000';
 
