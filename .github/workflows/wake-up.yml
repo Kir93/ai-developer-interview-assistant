@@ -1,0 +1,14 @@
+name: Prevent Supabase Inactivity
+
+on:
+  schedule:
+    - cron: '0 0 * * 0,3' # 일요일+수요일 자정 UTC
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          curl -X GET ${{secrets.NEXT_PUBLIC_SUPABASE_URL}} + '/rest/v1/questions?select=id&limit=1' \
+            -H "apikey: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}"
