@@ -1,6 +1,6 @@
 import { Box, Button, Card, Container, Heading, HStack, Text, VStack } from '@chakra-ui/react';
 import Link from 'next/link';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 
 import { HistoryItem } from 'types/history.types';
 
@@ -14,6 +14,7 @@ interface HistoryListProps {
 export default function HistoryList({ items, loading = false }: HistoryListProps) {
   const homeT = useTranslations('home');
   const t = useTranslations('history');
+  const locale = useLocale();
 
   if (loading) {
     return (
@@ -99,11 +100,14 @@ export default function HistoryList({ items, loading = false }: HistoryListProps
                     📅
                   </Box>
                   <Text fontSize="sm" color="gray.500" fontWeight="medium">
-                    {new Date(item.createdAt).toLocaleDateString('ko-KR', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric'
-                    })}
+                    {new Date(item.createdAt).toLocaleDateString(
+                      locale === 'ko' ? 'ko-KR' : 'en-US',
+                      {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
+                      }
+                    )}
                   </Text>
                 </HStack>
 
