@@ -14,16 +14,17 @@ import {
   SelectValueText,
   createListCollection
 } from '@chakra-ui/react';
+import { debounce } from 'es-toolkit';
 import { useTranslations } from 'next-intl';
 
-import { HistoryFilters } from 'types/history.types';
+import { HistoryFiltersType } from 'types/history.types';
 
 interface HistoryFiltersProps {
-  filters: HistoryFilters;
-  onFiltersChange: (filters: HistoryFilters) => void;
+  filters: HistoryFiltersType;
+  onFiltersChange: (filters: HistoryFiltersType) => void;
 }
 
-export default function HistoryFiltersComponent({ filters, onFiltersChange }: HistoryFiltersProps) {
+export default function HistoryFilters({ filters, onFiltersChange }: HistoryFiltersProps) {
   const homeT = useTranslations('home');
   const t = useTranslations('history');
   const [searchInput, setSearchInput] = useState(filters.search || '');
@@ -55,20 +56,20 @@ export default function HistoryFiltersComponent({ filters, onFiltersChange }: Hi
 
   const handleSearchChange = (value: string) => {
     setSearchInput(value);
-    onFiltersChange({ ...safeFilters, search: value });
+    debounce(() => onFiltersChange({ ...safeFilters, search: value }), 300)();
   };
 
   const handleDifficultyChange = (value: string) => {
     onFiltersChange({
       ...safeFilters,
-      difficulty: value as HistoryFilters['difficulty']
+      difficulty: value as HistoryFiltersType['difficulty']
     });
   };
 
   const handleSortChange = (value: string) => {
     onFiltersChange({
       ...safeFilters,
-      sortBy: value as HistoryFilters['sortBy']
+      sortBy: value as HistoryFiltersType['sortBy']
     });
   };
 
