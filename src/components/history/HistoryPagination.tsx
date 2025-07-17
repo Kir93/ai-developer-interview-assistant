@@ -3,17 +3,14 @@ import { BiChevronLeft, BiChevronRight } from 'react-icons/bi';
 import { Box, Button, HStack, IconButton, Text } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
-import { HistoryPagination } from 'types/history.types';
+import { HistoryPaginationType } from 'types/history.types';
 
 interface HistoryPaginationProps {
-  pagination: HistoryPagination;
+  pagination: HistoryPaginationType;
   onPageChange: (page: number) => void;
 }
 
-export default function HistoryPaginationComponent({
-  pagination,
-  onPageChange
-}: HistoryPaginationProps) {
+export default function HistoryPagination({ pagination, onPageChange }: HistoryPaginationProps) {
   const t = useTranslations('history');
 
   const { page, totalPages, total, limit } = pagination;
