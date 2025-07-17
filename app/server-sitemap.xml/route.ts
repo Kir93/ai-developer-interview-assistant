@@ -15,7 +15,5 @@ export async function GET() {
     lastmod: new Date().toISOString()
   }));
 
-  const fields = [...newsSitemaps];
-
-  return getServerSideSitemap(fields);
+  return getServerSideSitemap(newsSitemaps);
 }

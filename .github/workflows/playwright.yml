@@ -13,9 +13,6 @@ on:
 
 env:
   NODE_ENV: test
-  CI: true
-  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
-  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
 jobs:
   E2E-Tests:
@@ -77,6 +74,15 @@ jobs:
       - name: Install Playwright system dependencies (if cache hit)
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: pnpm exec playwright install-deps
+
+      - name: Build Next.js app
+        run: pnpm build
+
+      - name: Start server
+        run: pnpm start &
+
+      - name: Wait for server
+        run: pnpm dlx wait-on http://localhost:3000 --timeout 60000
 
       - name: Run Playwright tests
         run: pnpm exec playwright test
