@@ -98,8 +98,8 @@ export async function incrementIPApiUsage(ipAddress: string): Promise<{ limitCou
     .single();
 
   if (fetchError && fetchError.code !== supabaseErrorCodes.RECORD_NOT_FOUND) {
-    console.error('API 사용량 조회 중 오류:', fetchError);
-    throw new Error('API 사용량 조회 중 오류가 발생했습니다.');
+    console.error('기존 레코드 있는지 확인 중 오류:', fetchError);
+    throw new Error('기존 레코드 있는지 확인 중 오류가 발생했습니다.');
   }
 
   if (data) {
@@ -119,6 +119,6 @@ export async function incrementIPApiUsage(ipAddress: string): Promise<{ limitCou
       updated_at: new Date().toISOString()
     });
 
-    return { limitCount: 1 };
+    return { limitCount: DAILY_API_REQUEST_LIMIT - 1 };
   }
 }
