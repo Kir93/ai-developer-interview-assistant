@@ -6,25 +6,25 @@ import { FiActivity, FiBookOpen, FiTrendingUp } from 'react-icons/fi';
 import { Box, Container, Text, VStack, SimpleGrid, Card, HStack, Icon } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
-import { HistoryFilters, HistoryPagination } from 'types/history.types';
+import { HistoryFiltersType, HistoryPaginationType } from 'types/history.types';
 
 import { mockHistoryData } from '@config/mockData';
 
-import HistoryFiltersComponent from './HistoryFilters';
+import HistoryFilters from './HistoryFilters';
 import HistoryList from './HistoryList';
-import HistoryPaginationComponent from './HistoryPagination';
+import HistoryPagination from './HistoryPagination';
 
 export default function HistoryPage() {
   const t = useTranslations('history');
 
-  const [filters, setFilters] = useState<HistoryFilters>({
+  const [filters, setFilters] = useState<HistoryFiltersType>({
     search: '',
     difficulty: 'all',
     sortBy: 'date',
     sortOrder: 'desc'
   });
 
-  const [pagination, setPagination] = useState<HistoryPagination>({
+  const [pagination, setPagination] = useState<HistoryPaginationType>({
     page: 1,
     limit: 10,
     total: mockHistoryData.length,
@@ -64,7 +64,7 @@ export default function HistoryPage() {
     return filters.sortOrder === 'desc' ? -comparison : comparison;
   });
 
-  const handleFiltersChange = (newFilters: HistoryFilters) => {
+  const handleFiltersChange = (newFilters: HistoryFiltersType) => {
     setFilters(newFilters);
     setPagination((prev) => ({ ...prev, page: 1 }));
   };
@@ -172,13 +172,13 @@ export default function HistoryPage() {
         </SimpleGrid>
 
         {/* 필터 */}
-        <HistoryFiltersComponent filters={filters} onFiltersChange={handleFiltersChange} />
+        <HistoryFilters filters={filters} onFiltersChange={handleFiltersChange} />
 
         {/* 리스트 */}
         <HistoryList items={sortedData} loading={false} />
 
         {/* 페이지네이션 */}
-        <HistoryPaginationComponent pagination={pagination} onPageChange={handlePageChange} />
+        <HistoryPagination pagination={pagination} onPageChange={handlePageChange} />
       </VStack>
     </Container>
   );
