@@ -8,16 +8,16 @@ export interface HistoryItem {
   userId: string;
 }
 
-export interface HistoryFilters {
+export type HistoryFiltersType = {
   search: string;
   difficulty: 'all' | 'easy' | 'medium' | 'hard';
   sortBy: 'date' | 'topic' | 'difficulty';
   sortOrder: 'asc' | 'desc';
-}
+};
 
-export interface HistoryPagination {
+export type HistoryPaginationType = {
   page: number;
   limit: number;
   total: number;
   totalPages: number;
-}
+};
