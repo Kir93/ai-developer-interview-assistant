@@ -6,6 +6,8 @@
     "title": "AI 개발자 인터뷰 도우미",
     "subTitle": "AI로 최신 개발 트렌드와 인터뷰 팁을 바로 확인하세요.",
     "description": "기술 인터뷰에 대한 질문이 있습니까? 주제를 입력하면 AI가 연습 질문과 답변을 생성합니다.",
+    "loginPrompt": "로그인하여 질문과 답변을 저장하세요.",
+    "loginLinkText": "로그인하러 가기",
     "inputPlaceholder": "주제를 입력하세요. 예: 'JavaScript', 'React', 'Python' 등",
     "difficulty": {
       "easy": "쉬움",
