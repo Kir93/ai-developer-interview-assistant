@@ -6,6 +6,8 @@
     "title": "AI Developer Interview Assistant",
     "subTitle": "Get the latest development trends and interview tips with AI.",
     "description": "Have a question about tech interviews? Enter your topic and let AI generate a practice question and answer for you.",
+    "loginPrompt": "Log in to save your questions and answers.",
+    "loginLinkText": "Go to Login",
     "inputPlaceholder": "Enter a topic, e.g., 'JavaScript', 'React', 'Python', etc.",
     "difficulty": {
       "easy": "Easy",
@@ -18,9 +20,42 @@
     },
     "limitText": { "text": "Remaining API Requests", "unit": "requests" }
   },
-  "login": {
-    "title": "Login",
+  "auth": {
+    "loginTitle": "Login",
     "description": "Log in to save your questions and answers.",
-    "googleButtonText": "Log in with Google"
+    "googleButtonText": "Log in with Google",
+    "logoutTitle": "Logout"
+  },
+  "history": {
+    "title": "Question History",
+    "description": "View all your generated questions and answers.",
+    "stats": {
+      "totalQuestions": "Total Questions",
+      "hardDifficulty": "Hard Difficulty",
+      "diverseTopics": "Diverse Topics"
+    },
+    "empty": {
+      "title": "No questions generated yet",
+      "description": "Generate your first question!",
+      "buttonText": "Generate Question"
+    },
+    "filters": {
+      "all": "All",
+      "search": "Search",
+      "searchPlaceholder": "Search by topic or question content",
+      "difficulty": "Difficulty",
+      "date": "Date"
+    },
+    "item": {
+      "createdAt": "Created",
+      "topic": "Topic",
+      "difficulty": "Difficulty",
+      "viewDetails": "View Details"
+    },
+    "pagination": {
+      "previous": "Previous",
+      "next": "Next",
+      "showing": "Showing {{start}}-{{end}} of {{total}} items"
+    }
   }
 }

@@ -6,6 +6,8 @@
     "title": "AI 개발자 인터뷰 도우미",
     "subTitle": "AI로 최신 개발 트렌드와 인터뷰 팁을 바로 확인하세요.",
     "description": "기술 인터뷰에 대한 질문이 있습니까? 주제를 입력하면 AI가 연습 질문과 답변을 생성합니다.",
+    "loginPrompt": "로그인하여 질문과 답변을 저장하세요.",
+    "loginLinkText": "로그인하러 가기",
     "inputPlaceholder": "주제를 입력하세요. 예: 'JavaScript', 'React', 'Python' 등",
     "difficulty": {
       "easy": "쉬움",
@@ -21,9 +23,42 @@
       "unit": "회"
     }
   },
-  "login": {
-    "title": "로그인",
+  "auth": {
+    "loginTitle": "로그인",
     "description": "로그인하여 질문과 답변을 저장하세요.",
-    "googleButtonText": "Google로 로그인"
+    "googleButtonText": "Google로 로그인",
+    "logoutTitle": "로그아웃"
+  },
+  "history": {
+    "title": "질문 기록",
+    "description": "지금까지 생성한 질문과 답변을 확인하세요.",
+    "stats": {
+      "totalQuestions": "총 질문 수",
+      "hardDifficulty": "고급 난이도",
+      "diverseTopics": "다양한 주제"
+    },
+    "empty": {
+      "title": "아직 생성한 질문이 없습니다",
+      "description": "첫 번째 질문을 생성해보세요!",
+      "buttonText": "질문 생성하기"
+    },
+    "filters": {
+      "all": "전체",
+      "search": "검색",
+      "searchPlaceholder": "주제나 질문 내용으로 검색",
+      "difficulty": "난이도",
+      "date": "날짜"
+    },
+    "item": {
+      "createdAt": "생성일",
+      "topic": "주제",
+      "difficulty": "난이도",
+      "viewDetails": "자세히 보기"
+    },
+    "pagination": {
+      "previous": "이전",
+      "next": "다음",
+      "showing": "총 {{total}}개 중 {{start}}-{{end}}개 표시"
+    }
   }
 }
