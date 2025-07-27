@@ -22,10 +22,7 @@ export default async function generateQuestion({
   locale
 }: GenerateQuestionOptions): Promise<ResponseQuestionData> {
   try {
-    // 클라이언트 IP 주소 가져오기
     const ipAddress = await getClientIP();
-
-    // IP 주소 기반 당일 API 요청 횟수 확인
     const currentUsage = await getIPDailyApiUsage(ipAddress);
 
     if (currentUsage >= DAILY_API_REQUEST_LIMIT) {
@@ -35,27 +32,23 @@ export default async function generateQuestion({
       };
     }
 
-    // GPT에 보낼 프롬프트 구성
     const prompt = generateQuestionPrompt({
       question,
       difficulty,
       locale
     });
 
-    // OpenAI API 호출
     const completion = await openai.chat.completions.create({
       messages: [{ role: 'user', content: prompt }],
       model: 'gpt-4.1-nano'
     });
 
-    // API 응답 추출
     const responseContent = completion.choices[0]?.message?.content;
 
     if (!responseContent) {
       throw new Error('Failed to find content in API response.');
     }
 
-    // JSON 파싱
     const result = JSON.parse(responseContent);
 
     if (!result.question) {
@@ -67,14 +60,12 @@ export default async function generateQuestion({
 
     const questions: QuestionData = result.questions || result;
 
-    // Supabase에 질문 저장
     const { error } = await supabase.from('questions').insert(questions);
 
     if (error) {
       throw new Error(`Supabase 저장 중 오류 발생: ${error?.message}`);
     }
 
-    // API 사용량 증가
     const { limitCount } = await incrementIPApiUsage(ipAddress);
 
     return {
