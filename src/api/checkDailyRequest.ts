@@ -1,45 +1,10 @@
 'use server';
 
-import dayjs from 'dayjs';
-import { headers } from 'next/headers';
+import { getStartEndTime } from '@utils/date';
 
 import { DAILY_API_REQUEST_LIMIT } from '@config/bigContents';
 import supabase from '@config/supabase';
 import { supabaseErrorCodes } from '@config/supabaseErrorCodes';
-
-/**
- * 클라이언트 IP 주소 가져오기
- * @returns IP 주소 문자열
- */
-export async function getClientIP(): Promise<string> {
-  const headersList = await headers();
-
-  const forwardedFor = headersList.get('x-forwarded-for');
-  const realIP = headersList.get('x-real-ip');
-
-  const isDevelopment = process.env.NODE_ENV === 'development';
-
-  if (forwardedFor) {
-    const ip = forwardedFor.split(',')[0].trim();
-    if (isDevelopment && (ip === '::1' || ip === '127.0.0.1')) {
-      return 'development-ip';
-    }
-    return ip;
-  }
-
-  if (realIP) {
-    if (isDevelopment && (realIP === '::1' || realIP === '127.0.0.1')) {
-      return 'development-ip';
-    }
-    return realIP;
-  }
-
-  if (isDevelopment) {
-    return 'development-ip';
-  }
-
-  return 'unknown';
-}
 
 /**
  * IP 주소 기반 당일 API 요청 횟수 확인
@@ -47,8 +12,7 @@ export async function getClientIP(): Promise<string> {
  * @returns 당일 API 요청 횟수
  */
 export async function getIPDailyApiUsage(ipAddress: string): Promise<number> {
-  const startOfDay = dayjs().startOf('day').toISOString();
-  const endOfDay = dayjs().endOf('day').toISOString();
+  const { startOfDay, endOfDay } = getStartEndTime();
 
   if (ipAddress === 'development-ip' && process.env.NODE_ENV !== 'production') {
     return 1;
@@ -62,7 +26,7 @@ export async function getIPDailyApiUsage(ipAddress: string): Promise<number> {
     .lte('created_at', endOfDay)
     .single();
 
-  if (error) {
+  if (error && error.code !== supabaseErrorCodes.RECORD_NOT_FOUND) {
     console.error('API 사용량 조회 중 오류:', error);
     return 0;
   }
@@ -75,8 +39,7 @@ export async function getIPDailyApiUsage(ipAddress: string): Promise<number> {
  * @param ipAddress IP 주소
  */
 export async function incrementIPApiUsage(ipAddress: string): Promise<{ limitCount: number }> {
-  const startOfDay = dayjs().startOf('day').toISOString();
-  const endOfDay = dayjs().endOf('day').toISOString();
+  const { startOfDay, endOfDay } = getStartEndTime();
 
   const { data, error: fetchError } = await supabase
     .from('api_usage')
