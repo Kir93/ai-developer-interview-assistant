@@ -79,6 +79,11 @@ export default defineConfig([
               position: 'after'
             },
             {
+              pattern: '@hooks/**',
+              group: 'internal',
+              position: 'after'
+            },
+            {
               pattern: '@config/**',
               group: 'internal',
               position: 'after'

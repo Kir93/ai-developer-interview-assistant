@@ -6,12 +6,14 @@ import {
   ResponseQuestionData
 } from 'types/generateQuestion.types';
 
+import { getClientIP } from '@utils/getIp';
+
 import { DAILY_API_REQUEST_LIMIT } from '@config/bigContents';
 import openai from '@config/openai';
 import { generateQuestionPrompt } from '@config/prompt';
 import supabase from '@config/supabase';
 
-import { getClientIP, getIPDailyApiUsage, incrementIPApiUsage } from './checkDailyRequest';
+import { getIPDailyApiUsage, incrementIPApiUsage } from './checkDailyRequest';
 
 /**
  * GPT로부터 개발자 인터뷰 질문을 생성하는 서버 액션
@@ -28,6 +30,7 @@ export default async function generateQuestion({
     if (currentUsage >= DAILY_API_REQUEST_LIMIT) {
       return {
         success: false,
+        limitCount: 0,
         error: `오늘의 API 요청 한도(${DAILY_API_REQUEST_LIMIT}회)를 초과했습니다. 내일 다시 시도해주세요.`
       };
     }
