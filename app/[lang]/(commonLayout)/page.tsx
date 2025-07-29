@@ -1,6 +1,7 @@
 import { Box, Container, Heading, Text, VStack } from '@chakra-ui/react';
 import { useTranslations } from 'next-intl';
 
+import LoginPrompt from '@components/home/LoginPrompt';
 import { QuestionForm } from '@components/home/QuestionForm';
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
           <Text mt={2} fontSize="sm" color="gray.800" textAlign="center">
             {t('description')}
           </Text>
+          <LoginPrompt />
         </Box>
         <QuestionForm />
       </VStack>

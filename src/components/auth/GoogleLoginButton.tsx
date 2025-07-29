@@ -8,7 +8,7 @@ import { useTranslations } from 'next-intl';
 import useAuth from '@hooks/useAuth';
 
 export default function GoogleLoginButton() {
-  const t = useTranslations('login');
+  const t = useTranslations('auth');
   const { signInWithGoogle } = useAuth();
   return (
     <Button w="full" variant="outline" size="lg" onClick={signInWithGoogle}>
