@@ -1,12 +1,11 @@
-import { BiUser } from 'react-icons/bi';
-
-import { HStack, IconButton } from '@chakra-ui/react';
+import { HStack } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import Logo from '@public/logo.png';
 
 import NextImage from '@components/common/NextImage';
 
+import LinkNav from './LinkNav';
 import SelectLocale from './SelectLocale';
 
 interface IProps {
@@ -20,13 +19,7 @@ export default function Header({ type = 'common' }: IProps) {
         <NextImage src={Logo} alt="logo" w="24px" h="24px" />
       </Link>
       <HStack gap="12px">
-        {type !== 'login' && (
-          <Link href="/login">
-            <IconButton colorPalette="blue" variant="outline" aria-label="login" size="sm">
-              <BiUser />
-            </IconButton>
-          </Link>
-        )}
+        <LinkNav type={type} />
         <SelectLocale />
       </HStack>
     </HStack>

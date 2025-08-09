@@ -2,7 +2,7 @@ import { Center } from '@chakra-ui/react';
 
 import AppLayout from './AppLayout';
 import Footer from './Footer';
-import Header from './Header';
+import Header from './header/Header';
 
 export default function LoginLayout({ children }: { children: React.ReactNode }) {
   return (
