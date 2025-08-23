@@ -64,8 +64,8 @@ importers:
         specifier: ^9.31.0
         version: 9.33.0
       '@next/eslint-plugin-next':
-        specifier: ^15.4.2
-        version: 15.4.6
+        specifier: ^15.4.7
+        version: 15.4.7
       '@playwright/test':
         specifier: ^1.53.1
         version: 1.54.2
